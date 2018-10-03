@@ -5,4 +5,4 @@ Insomnia
 Insomnia is a desktop app for those who like to read that keeps a list of your books.
 
 
-<a href ="https://github.com/valevaty98/Insomnia/blob/master/docs/requirements/requirements.md">**Requirments.**</a>
+**Requirments: (<a href ="https://github.com/valevaty98/Insomnia/blob/master/docs/requirements.md">Ru</a>).**
