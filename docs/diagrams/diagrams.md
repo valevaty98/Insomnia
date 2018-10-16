@@ -15,7 +15,7 @@
 ### [Глоссарий](https://github.com/valevaty98/Insomnia/blob/master/docs/glossary.md)
 
 ### 1. Диаграмма активности<a name="1"></a>
-Диаграммы активности: ([Ru](https://github.com/steppbol/B-Player/blob/master/docs/Project%20Documentation/UMLDiagrams/Activity/README.md)).
+Диаграммы активности: ([Ru](https://github.com/valevaty98/Insomnia/blob/master/docs/diagrams/activity/activities.md)).
 
 ### 2. Диаграмма последовательности<a name="2"></a>
 Диаграмма последовательности основного варианта использования на примере действий с прочитанными книгами:
