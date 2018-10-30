@@ -13,7 +13,8 @@
 3. [Диаграмма последовательности](#3)
 4. [Диаграмма состояний](#4)
 5. [Диаграмма классов](#5)
-7. [Диаграмма развертывания и компонентов](#7)
+6. [Диаграмма компонентов](#6)
+7. [Диаграмма развертывания](#7)
 
 ### [Глоссарий](https://github.com/valevaty98/Insomnia/blob/master/docs/glossary.md)
 
@@ -106,6 +107,10 @@
 Диаграмма классов представляет собой следующую диаграмму: 
 ![Class Diagram](https://github.com/valevaty98/Insomnia/blob/master/docs/diagrams/class/ClassDiagram.png)
 
-### 7. Диаграмма развертывания<a name="6"></a>
+### 6. Диаграмма компонентов<a name="6"></a>
+Диаграмма компонентов: 
+![Component Diagram](https://github.com/valevaty98/Insomnia/blob/master/docs/diagrams/component/Component.png)
+
+### 7. Диаграмма развертывания<a name="7"></a>
 Диаграмма развёртывания: 
-![Deployment Diagram]()
+![Deployment Diagram](https://github.com/valevaty98/Insomnia/blob/master/docs/diagrams/deployment/DeploymentDiagram.png)
