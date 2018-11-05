@@ -1,17 +1,16 @@
 package sample;
 
 import javafx.animation.RotateTransition;
+import javafx.animation.ScaleTransition;
+import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.effect.Glow;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
+import javafx.scene.shape.*;
 import javafx.scene.shape.Polygon;
-import javafx.scene.shape.LineTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
@@ -82,43 +81,39 @@ public class Main extends Application {
         path.getElements().add(moveTo);
         path.getElements().addAll(line1, line2, line3, line4, line5);
 
-        //Creating a hexagon
-        Polygon hexagon = new Polygon();
-
-        //Adding coordinates to the hexagon
-        hexagon.getPoints().addAll(new Double[]{
-                200.0, 50.0,
-                400.0, 50.0,
-                450.0, 150.0,
-                400.0, 250.0,
-                200.0, 250.0,
-                150.0, 150.0,
-        });
-        //Setting the fill color for the hexagon
-        hexagon.setFill(Color.BLUE);
-
-        //Creating a rotate transition
         RotateTransition rotateTransition = new RotateTransition();
-
-        //Setting the duration for the transition
         rotateTransition.setDuration(Duration.millis(1000));
-
-        //Setting the node for the transition
-        rotateTransition.setNode(hexagon);
-
-        //Setting the angle of the rotation
+        rotateTransition.setNode(imageView);
         rotateTransition.setByAngle(360);
-
-        //Setting the cycle count for the transition
         rotateTransition.setCycleCount(50);
-
-        //Setting auto reverse value to false
         rotateTransition.setAutoReverse(false);
-
-        //Playing the animation
         rotateTransition.play();
 
-        Group root = new Group(line, text, path, imageView, hexagon);
+        Circle circle = new Circle();
+        circle.setCenterX(300);
+        circle.setCenterY(150);
+        circle.setRadius(30);
+        circle.setFill(Color.BROWN);
+        circle.setStrokeWidth(3);
+
+        ScaleTransition scaleTransition = new ScaleTransition();
+        scaleTransition.setDuration(Duration.millis(1000));
+        scaleTransition.setNode(circle);
+        scaleTransition.setByX(1.5);
+        scaleTransition.setByY(1.5);
+        scaleTransition.setCycleCount(50);
+        scaleTransition.setAutoReverse(false);
+        scaleTransition.play();
+
+        TranslateTransition translateTransition = new TranslateTransition();
+        translateTransition.setDuration(Duration.millis(1000));
+        translateTransition.setNode(circle);
+        translateTransition.setByX(300);
+        translateTransition.setCycleCount(50);
+        translateTransition.setAutoReverse(false);
+        translateTransition.play();
+
+        Group root = new Group(line, text, path, imageView,circle);
         Scene scene = new Scene(root, 600, 300);
         scene.setFill(Color.YELLOW);
 
