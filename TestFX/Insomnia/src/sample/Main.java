@@ -6,9 +6,15 @@ import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.Glow;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.scene.shape.Polygon;
@@ -22,10 +28,13 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.input.MouseEvent;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws FileNotFoundException{
         Line line = new Line(10,10,100,100);
         line.setFill(Color.RED);
         line.setStrokeWidth(3);
@@ -41,7 +50,7 @@ public class Main extends Application {
         text.setStrikethrough(true);
         text.setUnderline(true);
 
-        Image image = new Image("http://www.compline-ufa.ru/assets/images/0-4(2).png");
+        Image image = new Image(new FileInputStream("D:\\smoking.png"));
         ImageView imageView = new ImageView(image);
 
         imageView.setX(400);
@@ -131,22 +140,53 @@ public class Main extends Application {
             }
         };
 
+        line.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
+        text.addEventHandler(MouseEvent.MOUSE_ENTERED, eventHandlerText);
+
+        Text label1 = new Text("Email");
+        Text label2 = new Text("Password");
+        TextField emailField = new TextField();
+        PasswordField passwordField = new PasswordField();
+        Button btn1 = new Button("Submit");
+        Button btn2 = new Button("Clear");
+
+        GridPane gp = new GridPane();
+        gp.setMinSize(400, 200);
+        gp.setPadding(new Insets(10, 10, 10, 10));
+        gp.setVgap(5);
+        gp.setHgap(5);
+        gp.setAlignment(Pos.CENTER);
+
+        gp.add(label1,0,0);
+        gp.add(emailField, 1, 0);
+        gp.add(label2, 0, 1);
+        gp.add(passwordField, 1, 1);
+        gp.add(btn1, 0, 2);
+        gp.add(btn2, 1, 2);
+
+        //Styling nodes
+        btn1.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+        btn2.setStyle("-fx-background-color: darkslateblue; -fx-text-fill: white;");
+
+        label1.setStyle("-fx-font: normal bold 20px 'serif' ");
+        label2.setStyle("-fx-font: normal bold 20px 'serif' ");
+        gp.setStyle("-fx-background-color: BEIGE;");
+
+        Scene scene2 = new Scene(gp);
         imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 rotateTransition.stop();
+                primaryStage.setScene(scene2);
             }
         });
-        line.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
-        text.addEventHandler(MouseEvent.MOUSE_ENTERED, eventHandlerText);
 
         Group root = new Group(line, text, path, imageView,circle);
-        Scene scene = new Scene(root, 600, 300);
-        scene.setFill(Color.YELLOW);
-
+        Scene scene1 = new Scene(root, 600, 300);
+        scene1.setFill(Color.YELLOW);
 
         primaryStage.setTitle("Insomnia");
-        primaryStage.setScene(scene);
+        primaryStage.setScene(scene1);
         primaryStage.show();
         primaryStage.setResizable(false);
     }
