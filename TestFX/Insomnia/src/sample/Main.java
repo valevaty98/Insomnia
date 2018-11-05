@@ -4,6 +4,7 @@ import javafx.animation.RotateTransition;
 import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -19,8 +20,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
-import java.awt.*;
+import javafx.scene.input.MouseEvent;
 
 public class Main extends Application {
 
@@ -111,7 +111,34 @@ public class Main extends Application {
         translateTransition.setByX(300);
         translateTransition.setCycleCount(50);
         translateTransition.setAutoReverse(false);
-        translateTransition.play();
+
+        EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (line.getStroke() == Color.GREEN)
+                    line.setStroke(Color.RED);
+                else
+                    line.setStroke(Color.GREEN);
+                line.setStrokeWidth(3);
+                rotateTransition.play();
+            }
+        };
+
+        EventHandler<MouseEvent> eventHandlerText= new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                rotateTransition.stop();
+            }
+        };
+
+        imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                rotateTransition.stop();
+            }
+        });
+        line.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
+        text.addEventHandler(MouseEvent.MOUSE_ENTERED, eventHandlerText);
 
         Group root = new Group(line, text, path, imageView,circle);
         Scene scene = new Scene(root, 600, 300);
