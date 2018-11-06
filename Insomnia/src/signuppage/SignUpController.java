@@ -1,11 +1,15 @@
 package signuppage;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+
+import db.DatabaseHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import objects.User;
 
 public class SignUpController {
 
@@ -35,6 +39,23 @@ public class SignUpController {
 
     @FXML
     void initialize() {
-
+        signUpButton.setOnMouseClicked(event -> {
+            signUpNewUser();
+        });
     }
+
+    private void signUpNewUser() {
+        DatabaseHandler dbHandler = new DatabaseHandler();
+
+           User user = new User(nameField.getText(), surnameField.getText(), emailField.getText(),
+                    loginField.getText(), passwordField.getText());
+
+            try {
+                dbHandler.signUpUser(user);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        };
 }
