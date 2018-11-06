@@ -34,6 +34,17 @@ public class LoginController {
 
     @FXML
     void initialize() {
+        signInButton.setOnMouseClicked(event -> {
+            String loginText = loginField.getText().trim();
+            String passwordText = passwordField.getText().trim();
+
+            if (!loginText.equals("") && !passwordText.equals("")) {
+                loginUser(loginText, passwordText);
+            } else {
+                System.out.println("Invalid data!");
+            }
+        });
+
         signUpButton.setOnMouseClicked(event -> {
             signUpButton.getScene().getWindow().hide();
 
@@ -47,5 +58,9 @@ public class LoginController {
             stage.setScene(new Scene(root, 700, 500));
             stage.showAndWait();
         });
+    }
+
+    private void loginUser(String loginText, String passwordText) {
+
     }
 }
