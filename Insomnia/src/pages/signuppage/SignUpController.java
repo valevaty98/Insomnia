@@ -1,4 +1,4 @@
-package signuppage;
+package pages.signuppage;
 
 import java.net.URL;
 import java.sql.SQLException;

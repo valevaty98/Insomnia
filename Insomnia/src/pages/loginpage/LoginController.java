@@ -1,4 +1,4 @@
-package loginpage;
+package pages.loginpage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -56,7 +56,7 @@ public class LoginController {
         });
 
         signUpButton.setOnMouseClicked(event -> {
-            openNewScene(signUpButton, "/signuppage/signup.fxml");
+            openNewScene(signUpButton, "/pages/signuppage/signup.fxml");
         });
     }
 
@@ -74,7 +74,7 @@ public class LoginController {
             }
 
             if (counter > 0) {
-                openNewScene(signInButton, "/mainpage/mainpage.fxml");
+                openNewScene(signInButton, "/pages/mainpage/mainpage.fxml");
             } else {
                 Shake shakeLoginField = new Shake(loginField);
                 Shake shakePasswordField = new Shake(passwordField);

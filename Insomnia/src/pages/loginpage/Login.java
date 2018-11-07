@@ -1,4 +1,4 @@
-package loginpage;
+package pages.loginpage;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

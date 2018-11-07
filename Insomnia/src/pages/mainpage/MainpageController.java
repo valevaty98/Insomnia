@@ -1,4 +1,4 @@
-package mainpage;
+package pages.mainpage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
