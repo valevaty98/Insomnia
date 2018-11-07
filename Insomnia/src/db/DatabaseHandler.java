@@ -1,11 +1,7 @@
 package db;
 
-import com.mysql.fabric.jdbc.FabricMySQLDriver;
 import objects.User;
-
 import java.sql.*;
-import java.util.Properties;
-
 
 public class DatabaseHandler extends Configs {
     Connection dbConnection;
@@ -36,5 +32,20 @@ public class DatabaseHandler extends Configs {
         insertStatement.setString(5,user.getPassword());
 
         insertStatement.executeUpdate();
+    }
+
+    public ResultSet getUser(User user) throws SQLException, ClassNotFoundException {
+        ResultSet userSet = null;
+
+        String select = "SELECT * FROM " + Const.USER_TABLE + " WHERE " + Const.USERS_LOGIN +
+                "=? AND " + Const.USERS_PASSWORD + "=?";
+
+        PreparedStatement selectStatement = getDbConnection().prepareStatement(select);
+        selectStatement.setString(1,user.getLogin());
+        selectStatement.setString(2,user.getPassword());
+
+        userSet = selectStatement.executeQuery();
+
+        return userSet;
     }
 }
