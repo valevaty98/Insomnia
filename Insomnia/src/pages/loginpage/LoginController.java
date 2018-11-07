@@ -18,8 +18,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import objects.User;
+import pages.Page;
 
-public class LoginController {
+public class LoginController extends Page {
 
     @FXML
     private ResourceBundle resources;
@@ -86,19 +87,5 @@ public class LoginController {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-    }
-
-    private void openNewScene(Node node, String window) {
-        node.getScene().getWindow().hide();
-
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource(window));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root, 700, 500));
-        stage.showAndWait();
     }
 }
