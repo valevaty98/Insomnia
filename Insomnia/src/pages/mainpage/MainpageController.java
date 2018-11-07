@@ -57,6 +57,5 @@ public class MainpageController extends Page {
         haveReadButton.setOnMouseClicked(event -> {
             openNewScene(haveReadButton, "/pages/haveread/haveread.fxml");
         });
-
     }
 }

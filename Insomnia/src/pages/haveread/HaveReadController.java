@@ -31,6 +31,6 @@ public class HaveReadController {
 
     @FXML
     void initialize() {
-
+        
     }
 }

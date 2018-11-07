@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #2e3348;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pages.signuppage.SignUpController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #2e3348;" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pages.signuppage.SignUpController">
     <children>
         <AnchorPane layoutX="-1.0" layoutY="74.0" prefHeight="429.0" prefWidth="702.0" style="-fx-background-color: white;">
             <children>
@@ -53,5 +53,10 @@
                 <Font name="Times New Roman Bold Italic" size="54.0" />
             </font>
         </Label>
+      <Button fx:id="backButton" layoutX="635.0" layoutY="17.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="50.0" style="-fx-background-color: #F4A460;" text="Back" textFill="WHITE">
+         <font>
+            <Font name="Times New Roman Bold Italic" size="14.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

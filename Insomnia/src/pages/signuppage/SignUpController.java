@@ -10,8 +10,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import objects.User;
+import pages.Page;
 
-public class SignUpController {
+public class SignUpController extends Page {
 
     @FXML
     private ResourceBundle resources;
@@ -38,9 +39,17 @@ public class SignUpController {
     private TextField emailField;
 
     @FXML
+    private Button backButton;
+
+    @FXML
     void initialize() {
         signUpButton.setOnMouseClicked(event -> {
             signUpNewUser();
+            openNewScene(signUpButton, "/pages/mainpage/mainpage.fxml");
+        });
+
+        backButton.setOnMouseClicked(event -> {
+            openNewScene(backButton, "/pages/loginpage/login.fxml");
         });
     }
 
