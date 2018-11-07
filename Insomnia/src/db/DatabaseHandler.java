@@ -1,10 +1,20 @@
 package db;
 
+import objects.Book;
 import objects.User;
 import java.sql.*;
 
 public class DatabaseHandler extends Configs {
     Connection dbConnection;
+    private static User user;
+
+    public static User getUser() {
+        return user;
+    }
+
+    public static void setUser(User user) {
+        DatabaseHandler.user = user;
+    }
 
     public Connection getDbConnection()
             throws ClassNotFoundException, SQLException {
@@ -19,6 +29,7 @@ public class DatabaseHandler extends Configs {
         return dbConnection;
     }
 
+
     public void signUpUser(User user) throws SQLException, ClassNotFoundException {
         String insert = "INSERT INTO " + Const.USER_TABLE + "(" + Const.USERS_NAME + "," +
                 Const.USERS_SURNAME + "," + Const.USERS_EMAIL + "," + Const.USERS_LOGIN +
@@ -32,6 +43,8 @@ public class DatabaseHandler extends Configs {
         insertStatement.setString(5,user.getPassword());
 
         insertStatement.executeUpdate();
+
+        this.user = user;
     }
 
     public ResultSet getUser(User user) throws SQLException, ClassNotFoundException {
@@ -45,7 +58,35 @@ public class DatabaseHandler extends Configs {
         selectStatement.setString(2,user.getPassword());
 
         userSet = selectStatement.executeQuery();
-
+        if (userSet.next()) user.setId(String.valueOf(userSet.getInt(1)));
+        this.user = user;
         return userSet;
     }
+
+    public void addBookToUser (Book book) throws SQLException, ClassNotFoundException {
+        String id = this.user.getId();
+        String insert = "INSERT INTO " + Const.BOOK_TABLE + " (" + Const.BOOKS_USER_ID + "," + Const.BOOKS_TITLE + "," +
+                Const.BOOKS_AUTHOR + "," + Const.BOOKS_FROMDATE + "," + Const.BOOKS_TILLDATE +
+                "," + Const.BOOKS_AUDIO + "," + Const.BOOKS_NOTES + "," + Const.BOOKS_STATUS + "," +
+                "," + Const.BOOKS_GENRE + ") VALUES " + "(?,?,?,?,?,?,?,?,?)";
+
+        int k = Integer.valueOf(id);
+        System.out.println(k);
+        PreparedStatement insertStatement = getDbConnection().prepareStatement(insert);
+        insertStatement.setInt(1,k);
+        insertStatement.setString(2,book.getTitle());
+        insertStatement.setString(3,book.getAuthor());
+        insertStatement.setString(4, book.getFromData().toString());
+        insertStatement.setString(5, book.getTillData().toString());
+        insertStatement.setString(6, Boolean.toString(book.isAudio()));
+        insertStatement.setString(8,book.getStatus().toString());
+        insertStatement.setString(7,book.getNotes());
+        insertStatement.setString(9,book.getGenre());
+
+        insertStatement.executeUpdate();
+
+        user.addBook(book);
+        this.user = user;
+    }
+
 }

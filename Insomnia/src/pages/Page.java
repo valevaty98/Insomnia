@@ -20,6 +20,6 @@ public abstract class Page {
         }
         Stage stage = new Stage();
         stage.setScene(new Scene(root, 700, 500));
-        stage.showAndWait();
+        stage.show();
     }
 }
