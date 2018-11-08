@@ -129,12 +129,13 @@ public class AddController extends Page {
 
         String status = typeRadio.getSelectedToggle().toString();
         Status st;
-        if (status == "Have read") st = Status.HAVE_READ;
-        else if (status == "Is Reading") {
+        if (status.equals("Have read")) st = Status.HAVE_READ;
+        else if (status.equals("Is Reading")) {
             st = Status.IS_READING;
         } else st = Status.WILL_READ;
 
-        Book book = new Book(titleField.getText(), authorField.getText(), fromDatePicker.getValue(), tillDatePicker.getValue(), isAudioCheck.isSelected(), genreComboBox.getValue().toString(), st, noteField.getText());
+        Book book = new Book(st, titleField.getText(), authorField.getText(), fromDatePicker.getValue(), tillDatePicker.getValue(),
+                isAudioCheck.isSelected(), genreComboBox.getValue().toString(), noteField.getText());
 
         try {
             dbHandler.addBookToUser(book);

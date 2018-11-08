@@ -37,6 +37,7 @@ public class User {
         this.email = email;
         this.login = login;
         this.password = password;
+        this.books = new Vector<Book>();
     }
 
     public User() {

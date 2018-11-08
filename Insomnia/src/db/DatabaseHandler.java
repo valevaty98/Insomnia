@@ -65,23 +65,20 @@ public class DatabaseHandler extends Configs {
 
     public void addBookToUser (Book book) throws SQLException, ClassNotFoundException {
         String id = this.user.getId();
-        String insert = "INSERT INTO " + Const.BOOK_TABLE + " (" + Const.BOOKS_USER_ID + "," + Const.BOOKS_TITLE + "," +
-                Const.BOOKS_AUTHOR + "," + Const.BOOKS_FROMDATE + "," + Const.BOOKS_TILLDATE +
-                "," + Const.BOOKS_AUDIO + "," + Const.BOOKS_NOTES + "," + Const.BOOKS_STATUS + "," +
-                "," + Const.BOOKS_GENRE + ") VALUES " + "(?,?,?,?,?,?,?,?,?)";
+        String insert = "INSERT INTO " + Const.BOOK_TABLE + "(" + Const.BOOKS_USER_ID + "," + Const.BOOKS_STATUS + "," +
+                Const.BOOKS_TITLE + "," + Const.BOOKS_AUTHOR + "," + Const.BOOKS_FROMDATE + "," + Const.BOOKS_TILLDATE +
+                "," + Const.BOOKS_AUDIO + "," + Const.BOOKS_NOTES + "," + Const.BOOKS_GENRE + ") VALUES " + "(?,?,?,?,?,?,?,?,?)";
 
-        int k = Integer.valueOf(id);
-        System.out.println(k);
         PreparedStatement insertStatement = getDbConnection().prepareStatement(insert);
-        insertStatement.setInt(1,k);
-        insertStatement.setString(2,book.getTitle());
-        insertStatement.setString(3,book.getAuthor());
-        insertStatement.setString(4, book.getFromData().toString());
-        insertStatement.setString(5, book.getTillData().toString());
-        insertStatement.setString(6, Boolean.toString(book.isAudio()));
-        insertStatement.setString(8,book.getStatus().toString());
-        insertStatement.setString(7,book.getNotes());
-        insertStatement.setString(9,book.getGenre());
+        insertStatement.setInt(1, Integer.valueOf(id));
+        insertStatement.setString(2, book.getStatus().toString());
+        insertStatement.setString(3, book.getTitle());
+        insertStatement.setString(4, book.getAuthor());
+        insertStatement.setString(5, book.getFromData().toString());
+        insertStatement.setString(6, book.getTillData().toString());
+        insertStatement.setString(7, Boolean.toString(book.isAudio()));
+        insertStatement.setString(8, book.getNotes());
+        insertStatement.setString(9, book.getGenre());
 
         insertStatement.executeUpdate();
 

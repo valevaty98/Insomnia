@@ -3,15 +3,16 @@ package objects;
 import java.time.LocalDate;
 
 public class Book {
+    private Status status;
     private String title;
     private String author;
     private LocalDate fromData;
     private LocalDate tillData;
     private boolean isAudio;
     private String genre;
-    private Status status;
 
-    public Book(String title, String author, LocalDate fromData, LocalDate tillData, boolean isAudio, String genre, Status status, String notes) {
+    public Book( Status status, String title, String author, LocalDate fromData, LocalDate tillData, boolean isAudio, String genre, String notes) {
+        this.status = status;
         this.title = title;
         this.author = author;
         this.fromData = fromData;
@@ -19,7 +20,7 @@ public class Book {
         this.isAudio = isAudio;
         this.genre = genre;
         this.notes = notes;
-        this.status = status;
+
     }
 
     public String getNotes() {
