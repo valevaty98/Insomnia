@@ -75,8 +75,8 @@ public class DatabaseHandler extends Configs {
         insertStatement.setString(2, book.getStatus().toString());
         insertStatement.setString(3, book.getTitle());
         insertStatement.setString(4, book.getAuthor());
-        insertStatement.setString(5, book.getFromData().toString());
-        insertStatement.setString(6, book.getTillData().toString());
+        insertStatement.setString(5, book.getFromDate().toString());
+        insertStatement.setString(6, book.getTillDate().toString());
         insertStatement.setString(7, Boolean.toString(book.isAudio()));
         insertStatement.setString(8, book.getNotes());
         insertStatement.setString(9, book.getGenre());
@@ -91,11 +91,13 @@ public class DatabaseHandler extends Configs {
     public ResultSet getBooks(Status status) throws SQLException, ClassNotFoundException {
         ResultSet bookSet = null;
 
-        String select = "SELECT " + Const.BOOKS_TITLE + " FROM " + Const.BOOK_TABLE + " WHERE " + Const.BOOKS_USER_ID +
+        String select = "SELECT " + Const.BOOKS_TITLE + "," + Const.BOOKS_AUTHOR + "," + Const.BOOKS_TILLDATE +
+                " FROM " + Const.BOOK_TABLE + " WHERE " + Const.BOOKS_USER_ID + "=? AND " + Const.BOOKS_STATUS +
                 "=?";
 
         PreparedStatement selectStatement = getDbConnection().prepareStatement(select);
-        selectStatement.setInt(1,Integer.valueOf(user.getId()));
+        selectStatement.setInt(1, Integer.valueOf(user.getId()));
+        selectStatement.setString(2, status.toString());
 
         bookSet = selectStatement.executeQuery();
 

@@ -93,7 +93,9 @@ public class AddController extends Page {
         list.add("3");
         list.add("4");
         ObservableList<String> obsList = FXCollections.observableList(list);
+        genreComboBox.setValue("Select genre..");
         genreComboBox.setItems(obsList);
+
 
         aboutButton.setOnMouseClicked(event -> {
             openNewScene(aboutButton, "/pages/about/about.fxml");

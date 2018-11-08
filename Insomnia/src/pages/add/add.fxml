@@ -33,7 +33,7 @@
                <font>
                   <Font name="System Italic" size="13.0" />
                </font></TextField>
-            <RadioButton fx:id="haveReadRadio" layoutX="224.0" layoutY="33.0" mnemonicParsing="false" text="Have read" userData="Have read" textFill="#2e3348">
+            <RadioButton fx:id="haveReadRadio" layoutX="224.0" layoutY="33.0" mnemonicParsing="false" selected="true" text="Have read" textFill="#2e3348" userData="Have read">
                <font>
                   <Font name="System Bold Italic" size="13.0" />
                </font>
@@ -41,12 +41,12 @@
                   <ToggleGroup fx:id="typeRadio" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="isReadingRadio" layoutX="224.0" layoutY="66.0" mnemonicParsing="false" text="Is Reading" userData="Is Reading" textFill="#2e3348" toggleGroup="$typeRadio">
+            <RadioButton fx:id="isReadingRadio" layoutX="224.0" layoutY="66.0" mnemonicParsing="false" text="Is Reading" textFill="#2e3348" toggleGroup="$typeRadio" userData="Is Reading">
                <font>
                   <Font name="System Bold Italic" size="13.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="willReadRadio" layoutX="224.0" layoutY="96.0" mnemonicParsing="false" text="Will read" userData="Will read" textFill="#2e3348" toggleGroup="$typeRadio">
+            <RadioButton fx:id="willReadRadio" layoutX="224.0" layoutY="96.0" mnemonicParsing="false" text="Will read" textFill="#2e3348" toggleGroup="$typeRadio" userData="Will read">
                <font>
                   <Font name="System Bold Italic" size="13.0" />
                </font>

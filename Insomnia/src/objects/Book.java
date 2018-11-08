@@ -6,21 +6,26 @@ public class Book {
     private Status status;
     private String title;
     private String author;
-    private LocalDate fromData;
-    private LocalDate tillData;
+    private String fromDate;
+    private String tillDate;
     private boolean isAudio;
     private String genre;
 
-    public Book( Status status, String title, String author, LocalDate fromData, LocalDate tillData, boolean isAudio, String genre, String notes) {
+    public Book( Status status, String title, String author, LocalDate fromDate, LocalDate tillDate, boolean isAudio, String genre, String notes) {
         this.status = status;
         this.title = title;
         this.author = author;
-        this.fromData = fromData;
-        this.tillData = tillData;
+        this.fromDate = fromDate.toString();
+        this.tillDate = tillDate.toString();
         this.isAudio = isAudio;
         this.genre = genre;
         this.notes = notes;
+    }
 
+    public Book(String title, String author, String tillDate) {
+        this.author = author;
+        this.title = title;
+        this.tillDate = tillDate;
     }
 
     public String getNotes() {
@@ -49,20 +54,20 @@ public class Book {
         this.author = author;
     }
 
-    public LocalDate getFromData() {
-        return fromData;
+    public String getFromDate() {
+        return fromDate;
     }
 
-    public void setFromData(LocalDate fromData) {
-        this.fromData = fromData;
+    public void setFromDate(String fromDate) {
+        this.fromDate = fromDate;
     }
 
-    public LocalDate getTillData() {
-        return tillData;
+    public String getTillDate() {
+        return tillDate;
     }
 
-    public void setTillData(LocalDate tillData) {
-        this.tillData = tillData;
+    public void setTillDate(String tillDate) {
+        this.tillDate = tillDate;
     }
 
     public boolean isAudio() {
