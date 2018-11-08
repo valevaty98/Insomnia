@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import animations.Shake;
 import db.DatabaseHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -102,7 +103,7 @@ public class AddController extends Page {
         });
 
         homeButton.setOnMouseClicked(event -> {
-            openNewScene(homeButton, "/pages/mainpage/mainage.fxml");
+            openNewScene(homeButton, "/pages/mainpage/mainpage.fxml");
         });
 
         willReadButton.setOnMouseClicked(event -> {
@@ -121,12 +122,12 @@ public class AddController extends Page {
             Status status = addNewBookToUser();
             if (status == Status.HAVE_READ) openNewScene(haveReadButton, "/pages/haveread/haveread.fxml");
             else if (status == Status.IS_READING) openNewScene(isReadingButton, "/pages/isreading/isreading.fxml");
-            else openNewScene(willReadButton, "/pages/willread/willread.fxml");
-
+            else if (status == Status.WILL_READ) openNewScene(willReadButton, "/pages/willread/willread.fxml");
         });
     }
 
     private Status addNewBookToUser() {
+        Shake shake;
         DatabaseHandler dbHandler = new DatabaseHandler();
 
         String status = typeRadio.getSelectedToggle().getUserData().toString();
@@ -136,8 +137,36 @@ public class AddController extends Page {
             st = Status.IS_READING;
         } else st = Status.WILL_READ;
 
-        Book book = new Book(st, titleField.getText(), authorField.getText(), fromDatePicker.getValue(), tillDatePicker.getValue(),
-                isAudioCheck.isSelected(), genreComboBox.getValue().toString(), noteField.getText());
+        Book book = new Book();
+
+        book.setStatus(st);
+
+        if (titleField.getText().isEmpty()) {
+            shake = new Shake(titleField);
+            shake.playShake();
+            return Status.INVALID_INFO;
+        } else book.setTitle(titleField.getText());
+
+        if (!authorField.getText().isEmpty()) book.setAuthor(authorField.getText());
+
+        if (fromDatePicker.getValue() == null) {
+            shake = new Shake(fromDatePicker);
+            shake.playShake();
+            return Status.INVALID_INFO;
+        } else book.setFromDate(fromDatePicker.getValue().toString());
+
+        if (tillDatePicker.getValue() == null) {
+            shake = new Shake(tillDatePicker);
+            shake.playShake();
+            return Status.INVALID_INFO;
+        } else book.setTillDate(tillDatePicker.getValue().toString());
+
+        book.setAudio(isAudioCheck.isSelected());
+
+        if (genreComboBox.getValue() != null) book.setGenre(genreComboBox.getValue().toString());
+        else book.setGenre("");
+
+        if (!noteField.getText().isEmpty()) book.setNotes(noteField.getText());
 
         try {
             dbHandler.addBookToUser(book);

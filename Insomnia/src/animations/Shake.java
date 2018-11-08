@@ -11,7 +11,7 @@ public class Shake {
         translateTransition = new TranslateTransition(Duration.millis(70), node);
         translateTransition.setFromX(0);
         translateTransition.setByX(10);
-        translateTransition.setCycleCount(3);
+        translateTransition.setCycleCount(4);
         translateTransition.setAutoReverse(true);
     }
 

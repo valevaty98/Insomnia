@@ -5,11 +5,12 @@ import java.time.LocalDate;
 public class Book {
     private Status status;
     private String title;
-    private String author;
+    private String author = "";
     private String fromDate;
     private String tillDate;
     private boolean isAudio;
-    private String genre;
+    private String genre = "";
+    private String notes = "";
 
     public Book( Status status, String title, String author, LocalDate fromDate, LocalDate tillDate, boolean isAudio, String genre, String notes) {
         this.status = status;
@@ -28,6 +29,10 @@ public class Book {
         this.tillDate = tillDate;
     }
 
+    public Book() {
+
+    }
+
     public String getNotes() {
         return notes;
     }
@@ -35,8 +40,6 @@ public class Book {
     public void setNotes(String notes) {
         this.notes = notes;
     }
-
-    private String notes;
 
     public String getTitle() {
         return title;

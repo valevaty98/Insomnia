@@ -43,7 +43,7 @@ public class MainpageController extends Page {
         });
 
         homeButton.setOnMouseClicked(event -> {
-            openNewScene(homeButton, "/pages/mainpage/mainage.fxml");
+            openNewScene(homeButton, "/pages/mainpage/mainpage.fxml");
         });
 
         willReadButton.setOnMouseClicked(event -> {
