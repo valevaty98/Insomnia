@@ -1,11 +1,19 @@
 package pages.haveread;
 
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
+
+import db.DatabaseHandler;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
+import objects.Status;
 import pages.Page;
 
 public class HaveReadController extends Page {
@@ -17,7 +25,7 @@ public class HaveReadController extends Page {
     private URL location;
 
     @FXML
-    private ListView<?> haveReadList;
+    private ListView<String> haveReadList;
 
     @FXML
     private ImageView addImage;
@@ -39,6 +47,15 @@ public class HaveReadController extends Page {
 
     @FXML
     void initialize() {
+        ObservableList<String> names = null;
+        try {
+            names = getNames(Status.HAVE_READ);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        haveReadList.setItems(names);
         aboutButton.setOnMouseClicked(event -> {
             openNewScene(aboutButton, "/pages/about/about.fxml");
         });
@@ -62,5 +79,18 @@ public class HaveReadController extends Page {
         addImage.setOnMouseClicked(event -> {
             openNewScene(addImage, "/pages/add/add.fxml");
         });
+    }
+
+    private ObservableList<String> getNames(Status status) throws SQLException, ClassNotFoundException {
+        ObservableList<String> names = FXCollections.observableArrayList();
+
+        DatabaseHandler dbHandler = new DatabaseHandler();
+        ResultSet bookSet = dbHandler.getBooks(status);
+
+        while(bookSet.next()) {
+            names.add(bookSet.getString(1));
+        }
+
+        return names;
     }
 }

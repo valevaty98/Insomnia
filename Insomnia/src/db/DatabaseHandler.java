@@ -1,6 +1,7 @@
 package db;
 
 import objects.Book;
+import objects.Status;
 import objects.User;
 import java.sql.*;
 
@@ -85,6 +86,20 @@ public class DatabaseHandler extends Configs {
         this.user = user;
 
         user.addBook(book);
+    }
+
+    public ResultSet getBooks(Status status) throws SQLException, ClassNotFoundException {
+        ResultSet bookSet = null;
+
+        String select = "SELECT " + Const.BOOKS_TITLE + " FROM " + Const.BOOK_TABLE + " WHERE " + Const.BOOKS_USER_ID +
+                "=?";
+
+        PreparedStatement selectStatement = getDbConnection().prepareStatement(select);
+        selectStatement.setInt(1,Integer.valueOf(user.getId()));
+
+        bookSet = selectStatement.executeQuery();
+
+        return bookSet;
     }
 
 }

@@ -42,6 +42,7 @@ public class WillController extends Page {
 
     @FXML
     void initialize() {
+
         aboutButton.setOnMouseClicked(event -> {
             openNewScene(aboutButton, "/pages/about/about.fxml");
         });
