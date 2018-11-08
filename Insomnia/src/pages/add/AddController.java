@@ -127,7 +127,7 @@ public class AddController extends Page {
     private Status addNewBookToUser() {
         DatabaseHandler dbHandler = new DatabaseHandler();
 
-        String status = typeRadio.getSelectedToggle().toString();
+        String status = typeRadio.getSelectedToggle().getUserData().toString();
         Status st;
         if (status.equals("Have read")) st = Status.HAVE_READ;
         else if (status.equals("Is Reading")) {

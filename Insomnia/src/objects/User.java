@@ -41,6 +41,7 @@ public class User {
     }
 
     public User() {
+        this.books = new Vector<Book>();
     }
 
     public String getName() {
