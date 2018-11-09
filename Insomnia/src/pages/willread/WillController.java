@@ -29,12 +29,6 @@ public class WillController extends Page {
     private URL location;
 
     @FXML
-    private ImageView booksImage;
-
-    @FXML
-    private ListView<?> willReadList;
-
-    @FXML
     private ImageView addImage;
 
     @FXML
@@ -42,9 +36,6 @@ public class WillController extends Page {
 
     @FXML
     private Button aboutButton;
-
-    @FXML
-    private Button willReadButton;
 
     @FXML
     private Button homeButton;
@@ -87,10 +78,6 @@ public class WillController extends Page {
 
         homeButton.setOnMouseClicked(event -> {
             openNewScene(homeButton, "/pages/mainpage/mainpage.fxml");
-        });
-
-        willReadButton.setOnMouseClicked(event -> {
-            openNewScene(willReadButton, "/pages/willread/willread.fxml");
         });
 
         isReadingButton.setOnMouseClicked(event -> {
