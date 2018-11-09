@@ -94,8 +94,6 @@ public class DatabaseHandler extends Configs {
 
         insertStatement.executeUpdate();
 
-        this.user = user;
-
         user.addBook(book);
     }
 

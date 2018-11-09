@@ -89,14 +89,19 @@ public class AddController extends Page {
     @FXML
     void initialize() {
         List<String> list = new ArrayList<String>();
-        list.add("1");
-        list.add("2");
-        list.add("3");
-        list.add("4");
+        list.add("Science fiction");
+        list.add("Satire");
+        list.add("Drama");
+        list.add("Action");
+        list.add("Adventure");
+        list.add("Mistery");
+        list.add("Horror");
+        list.add("Romance");
+        list.add("Self help");
+        list.add("Another");
         ObservableList<String> obsList = FXCollections.observableList(list);
         genreComboBox.setValue("Select genre..");
         genreComboBox.setItems(obsList);
-
 
         aboutButton.setOnMouseClicked(event -> {
             openNewScene(aboutButton, "/pages/about/about.fxml");
@@ -133,12 +138,11 @@ public class AddController extends Page {
         String status = typeRadio.getSelectedToggle().getUserData().toString();
         Status st;
         if (status.equals("Have read")) st = Status.HAVE_READ;
-        else if (status.equals("Is Reading")) {
+        else if (status.equals("Is reading")) {
             st = Status.IS_READING;
         } else st = Status.WILL_READ;
 
         Book book = new Book();
-
         book.setStatus(st);
 
         if (titleField.getText().isEmpty()) {
@@ -155,16 +159,16 @@ public class AddController extends Page {
             return Status.INVALID_INFO;
         } else book.setFromDate(fromDatePicker.getValue().toString());
 
-        if (tillDatePicker.getValue() == null) {
-            shake = new Shake(tillDatePicker);
-            shake.playShake();
-            return Status.INVALID_INFO;
-        } else book.setTillDate(tillDatePicker.getValue().toString());
+        if (tillDatePicker.getValue() != null)  book.setTillDate(tillDatePicker.getValue().toString());
 
         book.setAudio(isAudioCheck.isSelected());
 
         if (genreComboBox.getValue() != null) book.setGenre(genreComboBox.getValue().toString());
-        else book.setGenre("");
+        else {
+            shake = new Shake(fromDatePicker);
+            shake.playShake();
+            return Status.INVALID_INFO;
+        };
 
         if (!noteField.getText().isEmpty()) book.setNotes(noteField.getText());
 
