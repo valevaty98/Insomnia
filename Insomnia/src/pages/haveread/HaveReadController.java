@@ -91,10 +91,6 @@ public class HaveReadController extends Page {
             openNewScene(isReadingButton, "/pages/isreading/isreading.fxml");
         });
 
-        haveReadButton.setOnMouseClicked(event -> {
-            openNewScene(haveReadButton, "/pages/haveread/haveread.fxml");
-        });
-
         addImage.setOnMouseClicked(event -> {
             openNewScene(addImage, "/pages/add/add.fxml");
         });

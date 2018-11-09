@@ -29,16 +29,7 @@ public class IsReadingController extends Page {
     private URL location;
 
     @FXML
-    private ImageView booksImage;
-
-    @FXML
-    private ListView<?> isReadingList;
-
-    @FXML
     private ImageView addImage;
-
-    @FXML
-    private Button isReadingButton;
 
     @FXML
     private Button aboutButton;
@@ -90,10 +81,6 @@ public class IsReadingController extends Page {
 
         willReadButton.setOnMouseClicked(event -> {
             openNewScene(willReadButton, "/pages/willread/willread.fxml");
-        });
-
-        isReadingButton.setOnMouseClicked(event -> {
-            openNewScene(isReadingButton, "/pages/isreading/isreading.fxml");
         });
 
         haveReadButton.setOnMouseClicked(event -> {
