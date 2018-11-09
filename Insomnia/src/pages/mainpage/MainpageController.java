@@ -31,19 +31,12 @@ public class MainpageController extends Page {
     private Button willReadButton;
 
     @FXML
-    private Button homeButton;
-
-    @FXML
     private Button haveReadButton;
 
     @FXML
     void initialize() {
         aboutButton.setOnMouseClicked(event -> {
             openNewScene(aboutButton, "/pages/about/about.fxml");
-        });
-
-        homeButton.setOnMouseClicked(event -> {
-            openNewScene(homeButton, "/pages/mainpage/mainpage.fxml");
         });
 
         willReadButton.setOnMouseClicked(event -> {
