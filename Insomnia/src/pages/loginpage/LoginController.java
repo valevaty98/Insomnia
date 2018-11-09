@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 import animations.Shake;
 import db.DatabaseHandler;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -16,6 +17,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import objects.User;
 import pages.Page;
@@ -43,22 +46,36 @@ public class LoginController extends Page {
     @FXML
     void initialize() {
         signInButton.setOnMouseClicked(event -> {
-            String loginText = loginField.getText().trim();
-            String passwordText = passwordField.getText().trim();
-
-            if (!loginText.equals("") && !passwordText.equals("")) {
-                loginUser(loginText, passwordText);
-            } else {
-                Shake shakeLoginField = new Shake(loginField);
-                Shake shakePasswordField = new Shake(passwordField);
-                shakeLoginField.playShake();
-                shakePasswordField.playShake();
-            }
+            checkLogin();
         });
 
         signUpButton.setOnMouseClicked(event -> {
             openNewScene(signUpButton, "/pages/signuppage/signup.fxml");
         });
+
+       loginField.setOnKeyTyped(event -> {
+            if (event.getCharacter().equals("\r"))
+                checkLogin();
+        });
+
+        passwordField.setOnKeyTyped(event -> {
+            if (event.getCharacter().equals("\r"))
+                checkLogin();
+        });
+    }
+
+    private void checkLogin() {
+        String loginText = loginField.getText().trim();
+        String passwordText = passwordField.getText().trim();
+
+        if (!loginText.equals("") && !passwordText.equals("")) {
+            loginUser(loginText, passwordText);
+        } else {
+            Shake shakeLoginField = new Shake(loginField);
+            Shake shakePasswordField = new Shake(passwordField);
+            shakeLoginField.playShake();
+            shakePasswordField.playShake();
+        }
     }
 
     private void loginUser(String loginText, String passwordText) {
