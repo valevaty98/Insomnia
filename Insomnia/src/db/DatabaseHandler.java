@@ -100,8 +100,9 @@ public class DatabaseHandler extends Configs {
     public ResultSet getBooks(Status status) throws SQLException, ClassNotFoundException {
         ResultSet bookSet = null;
 
-        String select = "SELECT " + Const.BOOKS_TITLE + "," + Const.BOOKS_AUTHOR + "," + Const.BOOKS_TILLDATE +
-                " FROM " + Const.BOOK_TABLE + " WHERE " + Const.BOOKS_USER_ID + "=? AND " + Const.BOOKS_STATUS +
+        String select = "SELECT " + Const.BOOKS_STATUS + "," + Const.BOOKS_TITLE + "," + Const.BOOKS_AUTHOR + ","
+                + Const.BOOKS_TILLDATE + "," + Const.BOOKS_FROMDATE + "," + Const.BOOKS_AUDIO + "," + Const.BOOKS_GENRE +
+                "," + Const.BOOKS_NOTES + " FROM " + Const.BOOK_TABLE + " WHERE " + Const.BOOKS_USER_ID + "=? AND " + Const.BOOKS_STATUS +
                 "=?";
 
         PreparedStatement selectStatement = getDbConnection().prepareStatement(select);

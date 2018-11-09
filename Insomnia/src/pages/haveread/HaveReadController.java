@@ -94,6 +94,10 @@ public class HaveReadController extends Page {
         addImage.setOnMouseClicked(event -> {
             openNewScene(addImage, "/pages/add/add.fxml");
         });
+
+        haveReadTable.setOnMouseClicked(event -> {
+            openNewSceneWithInfo(haveReadTable, "/pages/info/info.fxml", haveReadTable.getSelectionModel().getSelectedItem());
+        });
     }
 
     private ObservableList<Book> getBooksProperties(Status status) throws SQLException, ClassNotFoundException {
@@ -102,9 +106,10 @@ public class HaveReadController extends Page {
         DatabaseHandler dbHandler = new DatabaseHandler();
         ResultSet bookSet = dbHandler.getBooks(status);
 
-        while(bookSet.next()) {
-            books.add(new Book(bookSet.getString(Const.BOOKS_TITLE), bookSet.getString(Const.BOOKS_AUTHOR),
-                    bookSet.getString(Const.BOOKS_TILLDATE)));
+        while (bookSet.next()) {
+            books.add(new Book(status, bookSet.getString(Const.BOOKS_TITLE), bookSet.getString(Const.BOOKS_AUTHOR),
+                    LocalDate.parse(bookSet.getString(Const.BOOKS_FROMDATE)), LocalDate.parse(bookSet.getString(Const.BOOKS_TILLDATE)),
+                    Boolean.valueOf(bookSet.getString(Const.BOOKS_AUDIO)), bookSet.getString(Const.BOOKS_GENRE), bookSet.getString(Const.BOOKS_NOTES)));
         }
 
         return books;

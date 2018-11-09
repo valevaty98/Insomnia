@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #2e3348;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pages.mainpage.MainpageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #2e3348;" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pages.mainpage.MainpageController">
    <children>
       <AnchorPane layoutX="144.0" layoutY="74.0" prefHeight="429.0" prefWidth="557.0" style="-fx-background-color: white; -fx-border-radius: 5;">
          <children>
@@ -61,7 +61,6 @@
             </ImageView>
          </graphic>
       </Button>
-      <Line endX="28.0" layoutX="108.0" layoutY="124.0" startX="-100.0" stroke="#2e3348" />
       <Button fx:id="willReadButton" layoutX="-1.0" layoutY="226.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="146.0" style="-fx-background-color: white;" text="Will read " textFill="#2e3348">
          <font>
             <Font name="Times New Roman" size="17.0" />
@@ -77,7 +76,6 @@
             </ImageView>
          </graphic>
       </Button>
-      <Line endX="28.0" layoutX="108.0" layoutY="224.0" startX="-100.0" stroke="#2e3348" />
       <Button fx:id="homeButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="125.0" prefWidth="146.0" style="-fx-background-color: white;" text="Home" textAlignment="RIGHT" textFill="#2e3348">
          <font>
             <Font name="Times New Roman" size="17.0" />
@@ -108,6 +106,8 @@
             </ImageView>
          </graphic>
       </Button>
+      <Line endX="28.0" layoutX="108.0" layoutY="224.0" startX="-100.0" stroke="#2e3348" />
+      <Line endX="28.0" layoutX="108.0" layoutY="124.0" startX="-100.0" stroke="#2e3348" />
       <Line endX="28.0" layoutX="108.0" layoutY="174.0" startX="-100.0" stroke="#2e3348" />
       <Line endX="28.0" layoutX="108.0" layoutY="276.0" startX="-100.0" stroke="#2e3348" />
       <Line endX="28.0" layoutX="108.0" layoutY="124.0" startX="-100.0" stroke="#2e3348" />

@@ -20,11 +20,6 @@
     <children>
         <AnchorPane layoutX="144.0" layoutY="74.0" prefHeight="429.0" prefWidth="557.0" style="-fx-background-color: white; -fx-border-radius: 5;">
             <children>
-                <ImageView fx:id="booksImage" fitHeight="350.0" fitWidth="557.0" layoutX="-1.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../assets/icons/books.jpg" />
-                    </image>
-                </ImageView>
             <TextField fx:id="titleField" layoutX="25.0" layoutY="40.0" promptText="Title.." style="-fx-border-color: silver; -fx-border-radius: 5; -fx-background-color: white;">
                <font>
                   <Font name="System Italic" size="13.0" />
@@ -41,7 +36,7 @@
                   <ToggleGroup fx:id="typeRadio" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="isReadingRadio" layoutX="224.0" layoutY="66.0" mnemonicParsing="false" text="Is Reading" textFill="#2e3348" toggleGroup="$typeRadio" userData="Is Reading">
+            <RadioButton fx:id="isReadingRadio" layoutX="224.0" layoutY="66.0" mnemonicParsing="false" text="Is reading" textFill="#2e3348" toggleGroup="$typeRadio" userData="Is Reading">
                <font>
                   <Font name="System Bold Italic" size="13.0" />
                </font>

@@ -11,15 +11,10 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #2e3348;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pages.willread.WillController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #2e3348;" stylesheets="@../../styles/Styles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pages.willread.WillController">
     <children>
         <AnchorPane layoutX="144.0" layoutY="74.0" prefHeight="429.0" prefWidth="557.0" style="-fx-background-color: white; -fx-border-radius: 5;">
             <children>
-                <ImageView fx:id="booksImage" fitHeight="350.0" fitWidth="557.0" layoutX="-1.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../assets/icons/books.jpg" />
-                    </image>
-                </ImageView>
             <ImageView fx:id="addImage" fitHeight="60.0" fitWidth="61.0" layoutX="483.0" layoutY="372.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../assets/icons/add.png" />
