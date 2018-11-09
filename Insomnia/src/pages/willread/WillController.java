@@ -92,18 +92,4 @@ public class WillController extends Page {
             openNewScene(addImage, "/pages/add/add.fxml");
         });
     }
-
-    private ObservableList<Book> getBooksProperties(Status status) throws SQLException, ClassNotFoundException {
-        ObservableList<Book> books = FXCollections.observableArrayList();
-
-        DatabaseHandler dbHandler = new DatabaseHandler();
-        ResultSet bookSet = dbHandler.getBooks(status);
-
-        while(bookSet.next()) {
-            books.add(new Book(bookSet.getString(Const.BOOKS_TITLE), bookSet.getString(Const.BOOKS_AUTHOR),
-                    bookSet.getString(Const.BOOKS_TILLDATE)));
-        }
-
-        return books;
-    }
 }

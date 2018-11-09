@@ -70,9 +70,12 @@ public class DatabaseHandler extends Configs {
         selectStatement.setString(2,user.getPassword());
 
         userSet = selectStatement.executeQuery();
-        if (userSet.next()) user.setId(String.valueOf(userSet.getInt(1)));
-        this.user = user;
-        return userSet;
+        if (userSet.next()) {
+            user.setId(String.valueOf(userSet.getInt(1)));
+            this.user = user;
+            return userSet;
+        }
+        return null;
     }
 
     public void addBookToUser (Book book) throws SQLException, ClassNotFoundException {

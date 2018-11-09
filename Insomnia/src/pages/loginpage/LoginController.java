@@ -87,11 +87,7 @@ public class LoginController extends Page {
         try {
             ResultSet userSet = dbHandler.getUser(user);
             int counter = 0;
-            while (userSet.next()) {
-                counter++;
-            }
-
-            if (counter > 0) {
+            if (userSet != null) {
                 openNewScene(signInButton, "/pages/mainpage/mainpage.fxml");
             } else {
                 Shake shakeLoginField = new Shake(loginField);

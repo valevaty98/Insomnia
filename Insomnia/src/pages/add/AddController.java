@@ -134,6 +134,7 @@ public class AddController extends Page {
     private Status addNewBookToUser() {
         Shake shake;
         DatabaseHandler dbHandler = new DatabaseHandler();
+        Book book = new Book();
 
         String status = typeRadio.getSelectedToggle().getUserData().toString();
         Status st;
@@ -142,7 +143,6 @@ public class AddController extends Page {
             st = Status.IS_READING;
         } else st = Status.WILL_READ;
 
-        Book book = new Book();
         book.setStatus(st);
 
         if (titleField.getText().isEmpty()) {

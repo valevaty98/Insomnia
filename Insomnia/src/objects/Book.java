@@ -23,10 +23,15 @@ public class Book {
         this.notes = notes;
     }
 
-    public Book(String title, String author, String tillDate) {
-        this.author = author;
+    public Book(Status status, String title, String author, String fromDate, String tillDate, boolean isAudio, String genre, String notes) {
+        this.status = status;
         this.title = title;
+        this.author = author;
+        this.fromDate = fromDate;
         this.tillDate = tillDate;
+        this.isAudio = isAudio;
+        this.genre = genre;
+        this.notes = notes;
     }
 
     public Book() {
