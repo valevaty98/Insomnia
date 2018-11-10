@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
@@ -20,7 +21,7 @@ public class InfoController extends Page{
     private URL location;
 
     @FXML
-    private TextArea noteField;
+    private Label noteLabel;
 
     @FXML
     private Button doneButton;
@@ -63,7 +64,7 @@ public class InfoController extends Page{
         authorText.setText(book.getAuthor());
         fromDateText.setText(book.getFromDate());
         tillDateText.setText(book.getTillDate());
-        noteField.setText(book.getNotes());
+        noteLabel.setText(book.getNotes());
     }
 
     @FXML
