@@ -8,6 +8,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import objects.Book;
+import objects.Status;
 import pages.Page;
 
 public class InfoController extends Page{
@@ -66,7 +67,7 @@ public class InfoController extends Page{
     }
 
     @FXML
-    void initialize(Book book) {
+    void initialize() {
 
         aboutButton.setOnMouseClicked(event -> {
             openNewScene(aboutButton, "/pages/about/about.fxml");
@@ -86,6 +87,16 @@ public class InfoController extends Page{
 
         haveReadButton.setOnMouseClicked(event -> {
             openNewScene(haveReadButton, "/pages/haveread/haveread.fxml");
+        });
+
+        doneButton.setOnMouseClicked(event -> {
+            if (selectedBook.getStatus() == Status.HAVE_READ) openNewScene(doneButton, "/pages/haveread/haveread.fxml");
+            else if (selectedBook.getStatus() == Status.IS_READING) openNewScene(doneButton, "/pages/isreading/isreading.fxml");
+            else if (selectedBook.getStatus() == Status.WILL_READ) openNewScene(doneButton, "/pages/willread/willread.fxml");
+        });
+
+        editButton.setOnMouseClicked(event -> {
+            openNewSceneWithInfo(editButton, "/pages/edit/edit.fxml", selectedBook);
         });
     }
 }

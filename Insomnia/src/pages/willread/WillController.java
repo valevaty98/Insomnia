@@ -91,5 +91,9 @@ public class WillController extends Page {
         addImage.setOnMouseClicked(event -> {
             openNewScene(addImage, "/pages/add/add.fxml");
         });
+        willReadTable.setOnMouseClicked(event -> {
+            if (willReadTable.getSelectionModel().getSelectedItem() != null)
+            openNewSceneWithInfo(willReadTable, "/pages/info/info.fxml", willReadTable.getSelectionModel().getSelectedItem());
+        });
     }
 }

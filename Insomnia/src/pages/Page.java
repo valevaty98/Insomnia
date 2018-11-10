@@ -19,21 +19,21 @@ import java.sql.SQLException;
 
 public abstract class Page {
     protected void openNewScene(Node node, String window) {
-        node.getScene().getWindow().hide();
+        Stage stage = (Stage) node.getScene().getWindow();
+
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource(window));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Stage stage = new Stage();
 
         stage.setScene(new Scene(root, 700, 500));
         stage.show();
     }
 
     protected void openNewSceneWithInfo(Node node, String window, Book book) {
-        node.getScene().getWindow().hide();
+        Stage stage = (Stage) node.getScene().getWindow();
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(window));
@@ -47,7 +47,6 @@ public abstract class Page {
         InfoController infoController = loader.getController();
         infoController.initData(book);
 
-        Stage stage = new Stage();
         stage.setScene(new Scene(root, 700, 500));
         stage.show();
     }

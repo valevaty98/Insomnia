@@ -96,7 +96,8 @@ public class HaveReadController extends Page {
         });
 
         haveReadTable.setOnMouseClicked(event -> {
-            openNewSceneWithInfo(haveReadTable, "/pages/info/info.fxml", haveReadTable.getSelectionModel().getSelectedItem());
+            if (haveReadTable.getSelectionModel().getSelectedItem() != null)
+                openNewSceneWithInfo(haveReadTable, "/pages/info/info.fxml", haveReadTable.getSelectionModel().getSelectedItem());
         });
     }
 }

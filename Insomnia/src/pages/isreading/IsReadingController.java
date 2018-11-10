@@ -90,5 +90,10 @@ public class IsReadingController extends Page {
         addImage.setOnMouseClicked(event -> {
             openNewScene(addImage, "/pages/add/add.fxml");
         });
+
+        isReadingTable.setOnMouseClicked(event -> {
+            if (isReadingTable.getSelectionModel().getSelectedItem() != null)
+            openNewSceneWithInfo(isReadingTable, "/pages/info/info.fxml", isReadingTable.getSelectionModel().getSelectedItem());
+        });
     }
 }
