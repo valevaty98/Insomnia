@@ -23,6 +23,14 @@ public class User {
     public void addBook(Book book) {
         books.add(book);
     }
+
+    public void updateBook(Book book) {
+        for (Book b : books){
+            if (b.getId() == book.getId())
+                b = book;
+        }
+    }
+
     public Vector<Book> getBooks() {
         return books;
     }

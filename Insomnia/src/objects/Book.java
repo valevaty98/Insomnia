@@ -3,6 +3,8 @@ package objects;
 import java.time.LocalDate;
 
 public class Book {
+
+    private int id;
     private Status status;
     private String title;
     private String author = "";
@@ -34,8 +36,28 @@ public class Book {
         this.notes = notes;
     }
 
+    public Book(int id, Status status, String title, String author, String fromDate, String tillDate, boolean isAudio, String genre, String notes) {
+        this.id = id;
+        this.status = status;
+        this.title = title;
+        this.author = author;
+        this.fromDate = fromDate;
+        this.tillDate = tillDate;
+        this.isAudio = isAudio;
+        this.genre = genre;
+        this.notes = notes;
+    }
+
     public Book() {
 
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNotes() {

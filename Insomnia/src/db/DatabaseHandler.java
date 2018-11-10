@@ -100,10 +100,33 @@ public class DatabaseHandler extends Configs {
         user.addBook(book);
     }
 
+    public void updateBookInDB (Book book) throws SQLException, ClassNotFoundException {
+        int id_book = book.getId();
+        String update = "UPDATE " + Const.BOOK_TABLE + " SET " + Const.BOOKS_STATUS + "=?, " +
+                Const.BOOKS_TITLE + "=?, " + Const.BOOKS_AUTHOR + "=?, " + Const.BOOKS_FROMDATE + "=?, " + Const.BOOKS_TILLDATE +
+                "=?, " + Const.BOOKS_AUDIO + "=?, " + Const.BOOKS_NOTES + "=?," + Const.BOOKS_GENRE + "=? WHERE " + Const.BOOKS_ID +
+                "=?";
+
+        PreparedStatement updateStatement = getDbConnection().prepareStatement(update);
+        updateStatement.setString(1, book.getStatus().toString());
+        updateStatement.setString(2, book.getTitle());
+        updateStatement.setString(3, book.getAuthor());
+        updateStatement.setString(4, book.getFromDate().toString());
+        updateStatement.setString(5, book.getTillDate().toString());
+        updateStatement.setString(6, Boolean.toString(book.isAudio()));
+        updateStatement.setString(7, book.getNotes());
+        updateStatement.setString(8, book.getGenre());
+        updateStatement.setInt(9, id_book);
+
+        updateStatement.executeUpdate();
+
+        user.updateBook(book);
+    }
+
     public ResultSet getBooks(Status status) throws SQLException, ClassNotFoundException {
         ResultSet bookSet = null;
 
-        String select = "SELECT " + Const.BOOKS_STATUS + "," + Const.BOOKS_TITLE + "," + Const.BOOKS_AUTHOR + ","
+        String select = "SELECT " + Const.BOOKS_ID + "," + Const.BOOKS_STATUS + "," + Const.BOOKS_TITLE + "," + Const.BOOKS_AUTHOR + ","
                 + Const.BOOKS_TILLDATE + "," + Const.BOOKS_FROMDATE + "," + Const.BOOKS_AUDIO + "," + Const.BOOKS_GENRE +
                 "," + Const.BOOKS_NOTES + " FROM " + Const.BOOK_TABLE + " WHERE " + Const.BOOKS_USER_ID + "=? AND " + Const.BOOKS_STATUS +
                 "=?";

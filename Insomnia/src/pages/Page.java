@@ -50,6 +50,7 @@ public abstract class Page {
         stage.setScene(new Scene(root, 700, 500));
         stage.show();
     }
+
     protected ObservableList<Book> getBooksProperties(Status status) throws SQLException, ClassNotFoundException {
         ObservableList<Book> books = FXCollections.observableArrayList();
 
@@ -57,7 +58,7 @@ public abstract class Page {
         ResultSet bookSet = dbHandler.getBooks(status);
 
         while (bookSet.next()) {
-            books.add(new Book(status, bookSet.getString(Const.BOOKS_TITLE), bookSet.getString(Const.BOOKS_AUTHOR),
+            books.add(new Book(bookSet.getInt(Const.BOOKS_ID), status, bookSet.getString(Const.BOOKS_TITLE), bookSet.getString(Const.BOOKS_AUTHOR),
                     bookSet.getString(Const.BOOKS_FROMDATE), bookSet.getString(Const.BOOKS_TILLDATE),
                     Boolean.valueOf(bookSet.getString(Const.BOOKS_AUDIO)), bookSet.getString(Const.BOOKS_GENRE), bookSet.getString(Const.BOOKS_NOTES)));
         }
