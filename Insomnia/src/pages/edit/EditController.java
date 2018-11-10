@@ -41,14 +41,13 @@ public class EditController extends Page {
     private RadioButton haveReadRadio;
 
     @FXML
-    private ToggleGroup typeRadio;
+    private ToggleGroup statusRadio;
 
     @FXML
     private RadioButton isReadingRadio;
 
     @FXML
     private RadioButton willReadRadio;
-
     @FXML
     private DatePicker fromDatePicker;
 
@@ -153,7 +152,7 @@ public class EditController extends Page {
         Shake shake;
         DatabaseHandler dbHandler = new DatabaseHandler();
 
-        String status = typeRadio.getSelectedToggle().getUserData().toString();
+        String status = statusRadio.getSelectedToggle().getUserData().toString();
         Status st;
         if (status.equals("Have read")) st = Status.HAVE_READ;
         else if (status.equals("Is reading")) {

@@ -53,8 +53,8 @@ public class InfoController extends Page{
     @FXML
     private Button homeButton;
 
-    //@FXML
-   // private Button editButton;
+    @FXML
+    private Button editButton;
 
     private Book selectedBook;
 
@@ -96,8 +96,8 @@ public class InfoController extends Page{
             else if (selectedBook.getStatus() == Status.WILL_READ) openNewScene(doneButton, "/pages/willread/willread.fxml");
         });
 
-        //editButton.setOnMouseClicked(event -> {
-        //    openNewSceneWithInfo(editButton, "/pages/edit/edit.fxml", selectedBook);
-        //});
+        editButton.setOnMouseClicked(event -> {
+            openNewEditScene(editButton, "/pages/edit/edit.fxml", selectedBook);
+        });
     }
 }

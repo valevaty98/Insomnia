@@ -28,24 +28,6 @@
                     <font>
                         <Font name="System Italic" size="13.0" />
                     </font></TextField>
-                <RadioButton fx:id="haveReadRadio" layoutX="224.0" layoutY="33.0" mnemonicParsing="false" selected="true" text="Have read" textFill="#2e3348">
-                    <font>
-                        <Font name="System Bold Italic" size="13.0" />
-                    </font>
-                    <toggleGroup>
-                        <ToggleGroup fx:id="typeRadio" />
-                    </toggleGroup>
-                </RadioButton>
-                <RadioButton fx:id="isReadingRadio" layoutX="224.0" layoutY="66.0" mnemonicParsing="false" text="Is Reading" textFill="#2e3348" toggleGroup="$typeRadio">
-                    <font>
-                        <Font name="System Bold Italic" size="13.0" />
-                    </font>
-                </RadioButton>
-                <RadioButton fx:id="willReadRadio" layoutX="224.0" layoutY="96.0" mnemonicParsing="false" text="Will read" textFill="#2e3348" toggleGroup="$typeRadio">
-                    <font>
-                        <Font name="System Bold Italic" size="13.0" />
-                    </font>
-                </RadioButton>
                 <Line endX="22.0" endY="-41.0" layoutX="184.0" layoutY="165.0" startX="22.0" startY="-135.0" stroke="#2e3348" />
                 <Line endX="22.0" endY="-41.0" layoutX="309.0" layoutY="165.0" startX="22.0" startY="-135.0" stroke="#2e3348" />
                 <DatePicker fx:id="fromDatePicker" layoutX="355.0" layoutY="42.0" promptText="From date.." style="-fx-border-color: silver; -fx-border-radius: 5; -fx-background-color: white;" />
@@ -71,6 +53,24 @@
                   <Font name="Times New Roman Bold Italic" size="19.0" />
                </font>
             </Button>
+            <RadioButton fx:id="haveReadRadio" layoutX="225.0" layoutY="36.0" mnemonicParsing="false" selected="true" text="Have read" textFill="#2e3348" userData="Have read">
+               <font>
+                  <Font name="System Bold Italic" size="13.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="statusRadio" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="isReadingRadio" layoutX="225.0" layoutY="69.0" mnemonicParsing="false" text="Is reading" textFill="#2e3348" toggleGroup="$statusRadio" userData="Is Reading">
+               <font>
+                  <Font name="System Bold Italic" size="13.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="willReadRadio" layoutX="225.0" layoutY="99.0" mnemonicParsing="false" text="Will read" textFill="#2e3348" toggleGroup="$statusRadio" userData="Will read">
+               <font>
+                  <Font name="System Bold Italic" size="13.0" />
+               </font>
+            </RadioButton>
             </children>
         </AnchorPane>
         <Label layoutX="316.0" layoutY="3.0" text="Insomnia" textFill="WHITE">

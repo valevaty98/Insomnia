@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import objects.Book;
 import objects.Status;
+import pages.edit.EditController;
 import pages.info.InfoController;
 
 import java.io.IOException;
@@ -46,6 +47,25 @@ public abstract class Page {
 
         InfoController infoController = loader.getController();
         infoController.initData(book);
+
+        stage.setScene(new Scene(root, 700, 500));
+        stage.show();
+    }
+
+    protected void openNewEditScene(Node node, String window, Book book) {
+        Stage stage = (Stage) node.getScene().getWindow();
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(window));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        EditController editController = loader.getController();
+        editController.initData(book);
 
         stage.setScene(new Scene(root, 700, 500));
         stage.show();
