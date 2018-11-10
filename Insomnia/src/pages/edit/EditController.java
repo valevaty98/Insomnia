@@ -145,7 +145,13 @@ public class EditController extends Page {
             else if (status == Status.WILL_READ) openNewScene(willReadButton, "/pages/willread/willread.fxml");
         });
 
-
+        deleteButton.setOnMouseClicked(event -> {
+            deleteBook(selectedBook);
+            Status status = selectedBook.getStatus();
+            if (status == Status.HAVE_READ) openNewScene(haveReadButton, "/pages/haveread/haveread.fxml");
+            else if (status == Status.IS_READING) openNewScene(isReadingButton, "/pages/isreading/isreading.fxml");
+            else if (status == Status.WILL_READ) openNewScene(willReadButton, "/pages/willread/willread.fxml");
+        });
     }
 
     private Status updateBook(Book book) {
@@ -197,5 +203,17 @@ public class EditController extends Page {
         }
 
         return st;
+    }
+
+    public void deleteBook(Book book) {
+        DatabaseHandler dbHandler = new DatabaseHandler();
+
+        try {
+            dbHandler.deleteBookFromDB(book);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

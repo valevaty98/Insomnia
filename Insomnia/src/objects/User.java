@@ -25,9 +25,14 @@ public class User {
     }
 
     public void updateBook(Book book) {
-        for (Book b : books){
-            if (b.getId() == book.getId())
-                b = book;
+        for (Book b : books) {
+            if (b.getId() == book.getId()) b = book;
+        }
+    }
+
+    public void deleteBook(Book book) {
+        for (Book b : books) {
+            if (b.getId() == book.getId()) books.remove(b);
         }
     }
 

@@ -140,4 +140,15 @@ public class DatabaseHandler extends Configs {
         return bookSet;
     }
 
+    public void deleteBookFromDB(Book book) throws SQLException, ClassNotFoundException {
+        String delete = "DELETE FROM " + Const.BOOK_TABLE + " WHERE " + Const.BOOKS_ID + "=?";
+
+        PreparedStatement preparedStatement = getDbConnection().prepareStatement(delete);
+        preparedStatement.setInt(1, book.getId());
+
+        preparedStatement.executeUpdate();
+
+        user.deleteBook(book);
+    }
+
 }
