@@ -39,7 +39,7 @@ public class HaveReadController extends Page {
     private TableColumn<Book, String> authorColumn;
 
     @FXML
-    private TableColumn<Book, String> tillDateColumn;
+    private TableColumn<Book, String> fromDateColumn;
 
     @FXML
     private ImageView addImage;
@@ -70,9 +70,9 @@ public class HaveReadController extends Page {
             e.printStackTrace();
         }
 
-        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
-        authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
-        tillDateColumn.setCellValueFactory(new PropertyValueFactory<>("tillDate"));
+        titleColumn.setCellValueFactory(new PropertyValueFactory<>(Const.BOOKS_TITLE));
+        authorColumn.setCellValueFactory(new PropertyValueFactory<>(Const.BOOKS_AUTHOR));
+        fromDateColumn.setCellValueFactory(new PropertyValueFactory<>(Const.BOOKS_FROMDATE));
         haveReadTable.setItems(books);
 
         aboutButton.setOnMouseClicked(event -> {
