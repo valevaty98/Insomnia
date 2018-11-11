@@ -36,7 +36,7 @@
                   <ToggleGroup fx:id="typeRadio" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="isReadingRadio" layoutX="224.0" layoutY="66.0" mnemonicParsing="false" text="Is reading" textFill="#2e3348" toggleGroup="$typeRadio" userData="Is Reading">
+            <RadioButton fx:id="isReadingRadio" layoutX="224.0" layoutY="66.0" mnemonicParsing="false" text="Is reading" textFill="#2e3348" toggleGroup="$typeRadio" userData="Is reading">
                <font>
                   <Font name="System Bold Italic" size="13.0" />
                </font>

@@ -3,6 +3,7 @@ package db;
 import objects.Book;
 import objects.Status;
 import objects.User;
+
 import java.sql.*;
 
 public class DatabaseHandler extends Configs {
@@ -17,11 +18,9 @@ public class DatabaseHandler extends Configs {
         DatabaseHandler.user = user;
     }
 
-    public Connection getDbConnection()
-            throws ClassNotFoundException, SQLException {
+    public Connection getDbConnection() throws ClassNotFoundException, SQLException {
 
-        String connectionString = "jdbc:mysql://" + dbHost + ":" +
-                dbPort + "/" + dbName;
+        String connectionString = "jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName;
 
         Class.forName("com.mysql.jdbc.Driver");
 
@@ -33,25 +32,22 @@ public class DatabaseHandler extends Configs {
 
     public void signUpUser(User user) throws SQLException, ClassNotFoundException {
         ResultSet userSet = null;
-        String insert = "INSERT INTO " + Const.USER_TABLE + "(" + Const.USERS_NAME + "," +
-                Const.USERS_SURNAME + "," + Const.USERS_EMAIL + "," + Const.USERS_LOGIN +
-                "," + Const.USERS_PASSWORD + ") VALUES" + "(?,?,?,?,?)";
+        String insert = "INSERT INTO " + Const.USER_TABLE + "(" + Const.USERS_NAME + "," + Const.USERS_SURNAME + "," + Const.USERS_EMAIL + "," + Const.USERS_LOGIN + "," + Const.USERS_PASSWORD + ") VALUES" + "(?,?,?,?,?)";
 
         PreparedStatement insertStatement = getDbConnection().prepareStatement(insert);
-        insertStatement.setString(1,user.getName());
-        insertStatement.setString(2,user.getSurname());
-        insertStatement.setString(3,user.getEmail());
-        insertStatement.setString(4,user.getLogin());
-        insertStatement.setString(5,user.getPassword());
+        insertStatement.setString(1, user.getName());
+        insertStatement.setString(2, user.getSurname());
+        insertStatement.setString(3, user.getEmail());
+        insertStatement.setString(4, user.getLogin());
+        insertStatement.setString(5, user.getPassword());
 
         insertStatement.executeUpdate();
 
-        String select = "SELECT " + Const.USERS_ID + " FROM " + Const.USER_TABLE + " WHERE "
-                + Const.USERS_LOGIN + "=? AND " + Const.USERS_PASSWORD + "=?";
+        String select = "SELECT " + Const.USERS_ID + " FROM " + Const.USER_TABLE + " WHERE " + Const.USERS_LOGIN + "=? AND " + Const.USERS_PASSWORD + "=?";
 
         PreparedStatement selectStatement = getDbConnection().prepareStatement(select);
-        selectStatement.setString(1,user.getLogin());
-        selectStatement.setString(2,user.getPassword());
+        selectStatement.setString(1, user.getLogin());
+        selectStatement.setString(2, user.getPassword());
 
         userSet = selectStatement.executeQuery();
 
@@ -62,12 +58,11 @@ public class DatabaseHandler extends Configs {
     public ResultSet getUser(User user) throws SQLException, ClassNotFoundException {
         ResultSet userSet = null;
 
-        String select = "SELECT * FROM " + Const.USER_TABLE + " WHERE " + Const.USERS_LOGIN +
-                "=? AND " + Const.USERS_PASSWORD + "=?";
+        String select = "SELECT * FROM " + Const.USER_TABLE + " WHERE " + Const.USERS_LOGIN + "=? AND " + Const.USERS_PASSWORD + "=?";
 
         PreparedStatement selectStatement = getDbConnection().prepareStatement(select);
-        selectStatement.setString(1,user.getLogin());
-        selectStatement.setString(2,user.getPassword());
+        selectStatement.setString(1, user.getLogin());
+        selectStatement.setString(2, user.getPassword());
 
         userSet = selectStatement.executeQuery();
         if (userSet.next()) {
@@ -78,11 +73,9 @@ public class DatabaseHandler extends Configs {
         return null;
     }
 
-    public void addBookToUser (Book book) throws SQLException, ClassNotFoundException {
+    public void addBookToUser(Book book) throws SQLException, ClassNotFoundException {
         String id = this.user.getId();
-        String insert = "INSERT INTO " + Const.BOOK_TABLE + "(" + Const.BOOKS_USER_ID + "," + Const.BOOKS_STATUS + "," +
-                Const.BOOKS_TITLE + "," + Const.BOOKS_AUTHOR + "," + Const.BOOKS_FROMDATE + "," + Const.BOOKS_TILLDATE +
-                "," + Const.BOOKS_AUDIO + "," + Const.BOOKS_NOTES + "," + Const.BOOKS_GENRE + ") VALUES " + "(?,?,?,?,?,?,?,?,?)";
+        String insert = "INSERT INTO " + Const.BOOK_TABLE + "(" + Const.BOOKS_USER_ID + "," + Const.BOOKS_STATUS + "," + Const.BOOKS_TITLE + "," + Const.BOOKS_AUTHOR + "," + Const.BOOKS_FROMDATE + "," + Const.BOOKS_TILLDATE + "," + Const.BOOKS_AUDIO + "," + Const.BOOKS_NOTES + "," + Const.BOOKS_GENRE + ") VALUES " + "(?,?,?,?,?,?,?,?,?)";
 
         PreparedStatement insertStatement = getDbConnection().prepareStatement(insert);
         insertStatement.setInt(1, Integer.valueOf(id));
@@ -100,12 +93,9 @@ public class DatabaseHandler extends Configs {
         user.addBook(book);
     }
 
-    public void updateBookInDB (Book book) throws SQLException, ClassNotFoundException {
+    public void updateBookInDB(Book book) throws SQLException, ClassNotFoundException {
         int id_book = book.getId();
-        String update = "UPDATE " + Const.BOOK_TABLE + " SET " + Const.BOOKS_STATUS + "=?, " +
-                Const.BOOKS_TITLE + "=?, " + Const.BOOKS_AUTHOR + "=?, " + Const.BOOKS_FROMDATE + "=?, " + Const.BOOKS_TILLDATE +
-                "=?, " + Const.BOOKS_AUDIO + "=?, " + Const.BOOKS_NOTES + "=?," + Const.BOOKS_GENRE + "=? WHERE " + Const.BOOKS_ID +
-                "=?";
+        String update = "UPDATE " + Const.BOOK_TABLE + " SET " + Const.BOOKS_STATUS + "=?, " + Const.BOOKS_TITLE + "=?, " + Const.BOOKS_AUTHOR + "=?, " + Const.BOOKS_FROMDATE + "=?, " + Const.BOOKS_TILLDATE + "=?, " + Const.BOOKS_AUDIO + "=?, " + Const.BOOKS_NOTES + "=?," + Const.BOOKS_GENRE + "=? WHERE " + Const.BOOKS_ID + "=?";
 
         PreparedStatement updateStatement = getDbConnection().prepareStatement(update);
         updateStatement.setString(1, book.getStatus().toString());
@@ -126,10 +116,7 @@ public class DatabaseHandler extends Configs {
     public ResultSet getBooks(Status status) throws SQLException, ClassNotFoundException {
         ResultSet bookSet = null;
 
-        String select = "SELECT " + Const.BOOKS_ID + "," + Const.BOOKS_STATUS + "," + Const.BOOKS_TITLE + "," + Const.BOOKS_AUTHOR + ","
-                + Const.BOOKS_TILLDATE + "," + Const.BOOKS_FROMDATE + "," + Const.BOOKS_AUDIO + "," + Const.BOOKS_GENRE +
-                "," + Const.BOOKS_NOTES + " FROM " + Const.BOOK_TABLE + " WHERE " + Const.BOOKS_USER_ID + "=? AND " + Const.BOOKS_STATUS +
-                "=?";
+        String select = "SELECT " + Const.BOOKS_ID + "," + Const.BOOKS_STATUS + "," + Const.BOOKS_TITLE + "," + Const.BOOKS_AUTHOR + "," + Const.BOOKS_TILLDATE + "," + Const.BOOKS_FROMDATE + "," + Const.BOOKS_AUDIO + "," + Const.BOOKS_GENRE + "," + Const.BOOKS_NOTES + " FROM " + Const.BOOK_TABLE + " WHERE " + Const.BOOKS_USER_ID + "=? AND " + Const.BOOKS_STATUS + "=?";
 
         PreparedStatement selectStatement = getDbConnection().prepareStatement(select);
         selectStatement.setInt(1, Integer.valueOf(user.getId()));
