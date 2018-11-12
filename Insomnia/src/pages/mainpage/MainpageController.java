@@ -40,8 +40,14 @@ public class MainpageController extends Page {
 
     @FXML
     void initialize() {
-        quoteText.setText(getQuoteFromDB().getQuote());
-        authorText.setText(getQuoteFromDB().getAuthor());
+        try {
+            quoteText.setText(dbHandler.getRandomQuote().getQuote());
+            authorText.setText(dbHandler.getRandomQuote().getAuthor());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         aboutButton.setOnMouseClicked(event -> {
             openNewScene(aboutButton, "/pages/about/about.fxml");
@@ -62,17 +68,5 @@ public class MainpageController extends Page {
         homeButton.setOnMouseClicked(event -> {
             openNewScene(homeButton, "/pages/mainpage/mainpage.fxml");
         });
-    }
-
-    public Quote getQuoteFromDB(){
-        try {
-            return dbHandler.getRandomQuote();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return  null;
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            return null;
-        }
     }
 }

@@ -24,6 +24,7 @@ public abstract class Page {
     public Page() {
         dbHandler = new DatabaseHandler();
     }
+
     protected void openNewScene(Node node, String window) {
         Stage stage = (Stage) node.getScene().getWindow();
 
@@ -83,9 +84,7 @@ public abstract class Page {
         ResultSet bookSet = dbHandler.getBooks(status);
 
         while (bookSet.next()) {
-            books.add(new Book(bookSet.getInt(Const.BOOKS_ID), status, bookSet.getString(Const.BOOKS_TITLE), bookSet.getString(Const.BOOKS_AUTHOR),
-                    bookSet.getString(Const.BOOKS_FROMDATE), bookSet.getString(Const.BOOKS_TILLDATE),
-                    Boolean.valueOf(bookSet.getString(Const.BOOKS_AUDIO)), bookSet.getString(Const.BOOKS_GENRE), bookSet.getString(Const.BOOKS_NOTES)));
+            books.add(new Book(bookSet.getInt(Const.BOOKS_ID), status, bookSet.getString(Const.BOOKS_TITLE), bookSet.getString(Const.BOOKS_AUTHOR), bookSet.getString(Const.BOOKS_FROMDATE), bookSet.getString(Const.BOOKS_TILLDATE), Boolean.valueOf(bookSet.getString(Const.BOOKS_AUDIO)), bookSet.getString(Const.BOOKS_GENRE), bookSet.getString(Const.BOOKS_NOTES)));
         }
 
         return books;

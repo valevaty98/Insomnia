@@ -8,7 +8,8 @@ import objects.User;
 import java.sql.*;
 import java.util.Random;
 
-public class DatabaseHandler extends Configs {
+public class DatabaseHandler
+{
     Connection dbConnection;
     private static User user;
 
@@ -22,11 +23,11 @@ public class DatabaseHandler extends Configs {
 
     public Connection getDbConnection() throws ClassNotFoundException, SQLException {
 
-        String connectionString = "jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName;
+        String connectionString = "jdbc:mysql://" + Configs.dbHost + ":" + Configs.dbPort + "/" + Configs.dbName;
 
         Class.forName("com.mysql.jdbc.Driver");
 
-        dbConnection = DriverManager.getConnection(connectionString, dbUser, dbPassword);
+        dbConnection = DriverManager.getConnection(connectionString, Configs.dbUser, Configs.dbPassword);
 
         return dbConnection;
     }

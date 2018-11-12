@@ -114,7 +114,8 @@ public class EditController extends Page {
         else statusRadio.selectToggle(willReadRadio);
 
         fromDatePicker.setValue(LocalDate.parse(selectedBook.getFromDate()));
-        if (!selectedBook.getTillDate().equals("")) tillDatePicker.setValue(LocalDate.parse(selectedBook.getTillDate()));
+        if (!selectedBook.getTillDate().equals(""))
+            tillDatePicker.setValue(LocalDate.parse(selectedBook.getTillDate()));
 
         isAudioCheck.setSelected(selectedBook.isAudio());
         noteField.setText(selectedBook.getNotes());
@@ -179,7 +180,13 @@ public class EditController extends Page {
         });
 
         sureButton.setOnMouseClicked(event -> {
-            deleteBook(selectedBook);
+            try {
+                dbHandler.deleteBookFromDB(selectedBook);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
             Status status = selectedBook.getStatus();
             if (status == Status.HAVE_READ) openNewScene(haveReadButton, "/pages/haveread/haveread.fxml");
             else if (status == Status.IS_READING) openNewScene(isReadingButton, "/pages/isreading/isreading.fxml");
@@ -228,7 +235,6 @@ public class EditController extends Page {
             shake.playShake();
             return Status.INVALID_INFO;
         }
-        ;
 
         if (!noteField.getText().isEmpty()) book.setNotes(noteField.getText());
 
@@ -241,17 +247,5 @@ public class EditController extends Page {
         }
 
         return st;
-    }
-
-    public void deleteBook(Book book) {
-        DatabaseHandler dbHandler = new DatabaseHandler();
-
-        try {
-            dbHandler.deleteBookFromDB(book);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
     }
 }

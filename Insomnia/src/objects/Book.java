@@ -48,9 +48,7 @@ public class Book {
         this.notes = notes;
     }
 
-    public Book() {
-
-    }
+    public Book() {}
 
     public int getId() {
         return id;

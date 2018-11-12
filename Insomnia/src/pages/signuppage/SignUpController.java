@@ -91,15 +91,10 @@ public class SignUpController extends Page {
                 e.printStackTrace();
             }
         } else {
-            Shake shakeLoginField = new Shake(loginField);
-            Shake shakePasswordField = new Shake(passwordField);
-            Shake shakeNameField = new Shake(nameField);
-            Shake shakeEmailField = new Shake(emailField);
-
-            shakeLoginField.playShake();
-            shakePasswordField.playShake();
-            shakeEmailField.playShake();
-            shakeNameField.playShake();
+            new Shake(loginField).playShake();
+            new Shake(passwordField).playShake();
+            new Shake(nameField).playShake();
+            new Shake(emailField).playShake();
         }
     }
 }
