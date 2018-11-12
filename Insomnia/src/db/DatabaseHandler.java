@@ -13,6 +13,15 @@ public class DatabaseHandler
     Connection dbConnection;
     private static User user;
 
+    public DatabaseHandler() {
+        try {
+            setConnection();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     public static User getUser() {
         return user;
     }
@@ -21,23 +30,24 @@ public class DatabaseHandler
         DatabaseHandler.user = user;
     }
 
-    public Connection getDbConnection() throws ClassNotFoundException, SQLException {
+    public void setConnection() throws ClassNotFoundException, SQLException {
 
         String connectionString = "jdbc:mysql://" + Configs.dbHost + ":" + Configs.dbPort + "/" + Configs.dbName;
 
         Class.forName("com.mysql.jdbc.Driver");
 
         dbConnection = DriverManager.getConnection(connectionString, Configs.dbUser, Configs.dbPassword);
-
-        return dbConnection;
     }
 
+    public Connection getConnection() {
+        return dbConnection;
+    }
 
     public void signUpUser(User user) throws SQLException, ClassNotFoundException {
         ResultSet userSet = null;
         String insert = "INSERT INTO " + Const.USER_TABLE + "(" + Const.USERS_NAME + "," + Const.USERS_SURNAME + "," + Const.USERS_EMAIL + "," + Const.USERS_LOGIN + "," + Const.USERS_PASSWORD + ") VALUES" + "(?,?,?,?,?)";
 
-        PreparedStatement insertStatement = getDbConnection().prepareStatement(insert);
+        PreparedStatement insertStatement = getConnection().prepareStatement(insert);
         insertStatement.setString(1, user.getName());
         insertStatement.setString(2, user.getSurname());
         insertStatement.setString(3, user.getEmail());
@@ -48,7 +58,7 @@ public class DatabaseHandler
 
         String select = "SELECT " + Const.USERS_ID + " FROM " + Const.USER_TABLE + " WHERE " + Const.USERS_LOGIN + "=? AND " + Const.USERS_PASSWORD + "=?";
 
-        PreparedStatement selectStatement = getDbConnection().prepareStatement(select);
+        PreparedStatement selectStatement = getConnection().prepareStatement(select);
         selectStatement.setString(1, user.getLogin());
         selectStatement.setString(2, user.getPassword());
 
@@ -63,7 +73,7 @@ public class DatabaseHandler
 
         String select = "SELECT * FROM " + Const.USER_TABLE + " WHERE " + Const.USERS_LOGIN + "=? AND " + Const.USERS_PASSWORD + "=?";
 
-        PreparedStatement selectStatement = getDbConnection().prepareStatement(select);
+        PreparedStatement selectStatement = getConnection().prepareStatement(select);
         selectStatement.setString(1, user.getLogin());
         selectStatement.setString(2, user.getPassword());
 
@@ -80,7 +90,7 @@ public class DatabaseHandler
         String id = this.user.getId();
         String insert = "INSERT INTO " + Const.BOOK_TABLE + "(" + Const.BOOKS_USER_ID + "," + Const.BOOKS_STATUS + "," + Const.BOOKS_TITLE + "," + Const.BOOKS_AUTHOR + "," + Const.BOOKS_FROMDATE + "," + Const.BOOKS_TILLDATE + "," + Const.BOOKS_AUDIO + "," + Const.BOOKS_NOTES + "," + Const.BOOKS_GENRE + ") VALUES " + "(?,?,?,?,?,?,?,?,?)";
 
-        PreparedStatement insertStatement = getDbConnection().prepareStatement(insert);
+        PreparedStatement insertStatement = getConnection().prepareStatement(insert);
         insertStatement.setInt(1, Integer.valueOf(id));
         insertStatement.setString(2, book.getStatus().toString());
         insertStatement.setString(3, book.getTitle());
@@ -100,7 +110,7 @@ public class DatabaseHandler
         int id_book = book.getId();
         String update = "UPDATE " + Const.BOOK_TABLE + " SET " + Const.BOOKS_STATUS + "=?, " + Const.BOOKS_TITLE + "=?, " + Const.BOOKS_AUTHOR + "=?, " + Const.BOOKS_FROMDATE + "=?, " + Const.BOOKS_TILLDATE + "=?, " + Const.BOOKS_AUDIO + "=?, " + Const.BOOKS_NOTES + "=?," + Const.BOOKS_GENRE + "=? WHERE " + Const.BOOKS_ID + "=?";
 
-        PreparedStatement updateStatement = getDbConnection().prepareStatement(update);
+        PreparedStatement updateStatement = getConnection().prepareStatement(update);
         updateStatement.setString(1, book.getStatus().toString());
         updateStatement.setString(2, book.getTitle());
         updateStatement.setString(3, book.getAuthor());
@@ -121,7 +131,7 @@ public class DatabaseHandler
 
         String select = "SELECT " + Const.BOOKS_ID + "," + Const.BOOKS_STATUS + "," + Const.BOOKS_TITLE + "," + Const.BOOKS_AUTHOR + "," + Const.BOOKS_TILLDATE + "," + Const.BOOKS_FROMDATE + "," + Const.BOOKS_AUDIO + "," + Const.BOOKS_GENRE + "," + Const.BOOKS_NOTES + " FROM " + Const.BOOK_TABLE + " WHERE " + Const.BOOKS_USER_ID + "=? AND " + Const.BOOKS_STATUS + "=?";
 
-        PreparedStatement selectStatement = getDbConnection().prepareStatement(select);
+        PreparedStatement selectStatement = getConnection().prepareStatement(select);
         selectStatement.setInt(1, Integer.valueOf(user.getId()));
         selectStatement.setString(2, status.toString());
 
@@ -133,7 +143,7 @@ public class DatabaseHandler
     public void deleteBookFromDB(Book book) throws SQLException, ClassNotFoundException {
         String delete = "DELETE FROM " + Const.BOOK_TABLE + " WHERE " + Const.BOOKS_ID + "=?";
 
-        PreparedStatement preparedStatement = getDbConnection().prepareStatement(delete);
+        PreparedStatement preparedStatement = getConnection().prepareStatement(delete);
         preparedStatement.setInt(1, book.getId());
 
         preparedStatement.executeUpdate();
@@ -146,7 +156,7 @@ public class DatabaseHandler
         int numberOfQuotes;
 
         String selectCount = "SELECT COUNT(*) FROM " + Const.QUOTE_TABLE;
-        Statement statement = getDbConnection().createStatement();
+        Statement statement = getConnection().createStatement();
         ResultSet resultSet = statement.executeQuery(selectCount);
 
         if (resultSet.next()) numberOfQuotes = resultSet.getInt(1);
@@ -156,7 +166,7 @@ public class DatabaseHandler
 
         String select = "SELECT " + Const.QUOTES_ID + "," + Const.QUOTES_AUTHOR + "," + Const.QUOTES_QUOTE + " FROM " + Const.QUOTE_TABLE + " WHERE " + Const.QUOTES_ID + "=?";
 
-        PreparedStatement selectStatement = getDbConnection().prepareStatement(select);
+        PreparedStatement selectStatement = getConnection().prepareStatement(select);
         selectStatement.setInt(1, random.nextInt(numberOfQuotes) + 1);
 
         resultSet = selectStatement.executeQuery();
