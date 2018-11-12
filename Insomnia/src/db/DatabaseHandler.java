@@ -153,7 +153,7 @@ public class DatabaseHandler extends Configs {
 
         Random random = new Random();
 
-        String select = "SELECT " + Const.QUOTES_AUTHOR + "," + Const.QUOTES_QUOTE + " FROM " + Const.QUOTE_TABLE + " WHERE " + Const.QUOTES_ID + "=?";
+        String select = "SELECT " + Const.QUOTES_ID + "," + Const.QUOTES_AUTHOR + "," + Const.QUOTES_QUOTE + " FROM " + Const.QUOTE_TABLE + " WHERE " + Const.QUOTES_ID + "=?";
 
         PreparedStatement selectStatement = getDbConnection().prepareStatement(select);
         selectStatement.setInt(1, random.nextInt(numberOfQuotes) + 1);

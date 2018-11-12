@@ -19,9 +19,9 @@
                   <Font name="Arial Italic" size="17.0" />
                </font>
             </Text>
-            <Text fx:id="authorText" fill="#2e3348" layoutX="273.0" layoutY="376.0" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" text="Author" textAlignment="RIGHT" wrappingWidth="269.00001561641693">
+            <Text fx:id="authorText" fill="#2e3348" layoutX="285.0" layoutY="376.0" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" text="Author" textAlignment="RIGHT" wrappingWidth="232.00001561641693">
                <font>
-                  <Font name="Arial Italic" size="13.0" />
+                  <Font name="Arial Italic" size="14.0" />
                </font>
             </Text>
          </children>

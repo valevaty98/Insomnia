@@ -30,6 +30,9 @@ public class MainpageController extends Page {
     private Button aboutButton;
 
     @FXML
+    private Button homeButton;
+
+    @FXML
     private Button willReadButton;
 
     @FXML
@@ -38,7 +41,7 @@ public class MainpageController extends Page {
     @FXML
     void initialize() {
         quoteText.setText(getQuoteFromDB().getQuote());
-        quoteText.setText(getQuoteFromDB().getAuthor());
+        authorText.setText(getQuoteFromDB().getAuthor());
 
         aboutButton.setOnMouseClicked(event -> {
             openNewScene(aboutButton, "/pages/about/about.fxml");
@@ -56,6 +59,9 @@ public class MainpageController extends Page {
             openNewScene(haveReadButton, "/pages/haveread/haveread.fxml");
         });
 
+        homeButton.setOnMouseClicked(event -> {
+            openNewScene(homeButton, "/pages/mainpage/mainpage.fxml");
+        });
     }
 
     public Quote getQuoteFromDB(){
