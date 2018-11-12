@@ -2,6 +2,7 @@ package pages.edit;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -91,6 +92,20 @@ public class EditController extends Page {
 
     public void initData(Book book) {
         selectedBook = book;
+
+        titleField.setText(selectedBook.getTitle());
+        authorField.setText(selectedBook.getAuthor());
+
+        if (selectedBook.getStatus() == Status.HAVE_READ) statusRadio.selectToggle(haveReadRadio);
+        else if (selectedBook.getStatus() == Status.IS_READING) statusRadio.selectToggle(isReadingRadio);
+        else statusRadio.selectToggle(willReadRadio);
+
+        fromDatePicker.setValue(LocalDate.parse(selectedBook.getFromDate()));
+        if (!selectedBook.getTillDate().equals("")) tillDatePicker.setValue(LocalDate.parse(selectedBook.getTillDate()));
+
+        isAudioCheck.setSelected(selectedBook.isAudio());
+        noteField.setText(selectedBook.getNotes());
+        genreComboBox.getSelectionModel().select(selectedBook.getGenre());
     }
 
     @FXML
@@ -181,7 +196,7 @@ public class EditController extends Page {
             return Status.INVALID_INFO;
         } else book.setFromDate(fromDatePicker.getValue().toString());
 
-        if (tillDatePicker.getValue() != null)  book.setTillDate(tillDatePicker.getValue().toString());
+        if (tillDatePicker.getValue() != null) book.setTillDate(tillDatePicker.getValue().toString());
 
         book.setAudio(isAudioCheck.isSelected());
 
@@ -190,7 +205,8 @@ public class EditController extends Page {
             shake = new Shake(fromDatePicker);
             shake.playShake();
             return Status.INVALID_INFO;
-        };
+        }
+        ;
 
         if (!noteField.getText().isEmpty()) book.setNotes(noteField.getText());
 

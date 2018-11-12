@@ -58,6 +58,7 @@ public abstract class Page {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(window));
         Parent root = null;
+
         try {
             root = loader.load();
         } catch (IOException e) {
