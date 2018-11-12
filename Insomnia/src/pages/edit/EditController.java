@@ -93,7 +93,7 @@ public class EditController extends Page {
     private AnchorPane deletePane;
 
     @FXML
-    private AnchorPane infoPain;
+    private AnchorPane infoPane;
 
     @FXML
     private Button sureButton;
@@ -175,6 +175,7 @@ public class EditController extends Page {
 
         deleteButton.setOnMouseClicked(event -> {
             deletePane.setVisible(true);
+            infoPane.setDisable(true);
         });
 
         sureButton.setOnMouseClicked(event -> {
@@ -187,10 +188,7 @@ public class EditController extends Page {
 
         noButton.setOnMouseClicked(event -> {
             deletePane.setVisible(false);
-        });
-
-        infoPain.setOnMouseClicked(event -> {
-            deletePane.setVisible(false);
+            infoPane.setDisable(false);
         });
     }
 
