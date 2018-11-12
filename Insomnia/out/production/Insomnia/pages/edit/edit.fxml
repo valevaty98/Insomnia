@@ -71,6 +71,25 @@
                   <Font name="System Bold Italic" size="13.0" />
                </font>
             </RadioButton>
+            <AnchorPane fx:id="deletePane" layoutX="89.0" layoutY="93.0" prefHeight="160.0" prefWidth="341.0" style="-fx-background-color: #E6E6E6; -fx-opacity: 0.8; -fx-background-radius: 10; visibility: false;">
+               <children>
+                  <Button fx:id="sureButton" layoutX="34.0" layoutY="107.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="81.0" style="-fx-background-color: #F4A460;" text="Sure" textFill="WHITE">
+                     <font>
+                        <Font name="Times New Roman Bold Italic" size="15.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="139.0" layoutY="38.0" prefHeight="31.0" prefWidth="94.0" text="Delete?">
+                     <font>
+                        <Font name="Times New Roman Bold" size="28.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="noButton" layoutX="225.0" layoutY="107.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="81.0" style="-fx-background-color: #F4A460;" text="No" textFill="WHITE">
+                     <font>
+                        <Font name="Times New Roman Bold Italic" size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
             </children>
         </AnchorPane>
         <Label layoutX="316.0" layoutY="3.0" text="Insomnia" textFill="WHITE">

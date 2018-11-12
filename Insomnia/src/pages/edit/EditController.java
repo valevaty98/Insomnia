@@ -20,6 +20,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.AnchorPane;
 import objects.Book;
 import objects.Status;
 import pages.Page;
@@ -87,6 +88,18 @@ public class EditController extends Page {
 
     @FXML
     private Button deleteButton;
+
+    @FXML
+    private AnchorPane deletePane;
+
+    @FXML
+    private AnchorPane infoPain;
+
+    @FXML
+    private Button sureButton;
+
+    @FXML
+    private Button noButton;
 
     private Book selectedBook;
 
@@ -161,11 +174,23 @@ public class EditController extends Page {
         });
 
         deleteButton.setOnMouseClicked(event -> {
+            deletePane.setVisible(true);
+        });
+
+        sureButton.setOnMouseClicked(event -> {
             deleteBook(selectedBook);
             Status status = selectedBook.getStatus();
             if (status == Status.HAVE_READ) openNewScene(haveReadButton, "/pages/haveread/haveread.fxml");
             else if (status == Status.IS_READING) openNewScene(isReadingButton, "/pages/isreading/isreading.fxml");
             else if (status == Status.WILL_READ) openNewScene(willReadButton, "/pages/willread/willread.fxml");
+        });
+
+        noButton.setOnMouseClicked(event -> {
+            deletePane.setVisible(false);
+        });
+        
+        infoPain.setOnMouseClicked(event -> {
+            deletePane.setVisible(false);
         });
     }
 
