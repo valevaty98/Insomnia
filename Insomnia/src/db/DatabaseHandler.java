@@ -1,10 +1,12 @@
 package db;
 
 import objects.Book;
+import objects.Quote;
 import objects.Status;
 import objects.User;
 
 import java.sql.*;
+import java.util.Random;
 
 public class DatabaseHandler extends Configs {
     Connection dbConnection;
@@ -138,4 +140,28 @@ public class DatabaseHandler extends Configs {
         user.deleteBook(book);
     }
 
+    public Quote getRandomQuote() throws SQLException, ClassNotFoundException {
+        Quote quote;
+        int numberOfQuotes;
+
+        String selectCount = "SELECT COUNT(*) FROM " + Const.QUOTE_TABLE;
+        Statement statement = getDbConnection().createStatement();
+        ResultSet resultSet = statement.executeQuery(selectCount);
+
+        if (resultSet.next()) numberOfQuotes = resultSet.getInt(1);
+        else numberOfQuotes = 0;
+
+        Random random = new Random();
+
+        String select = "SELECT " + Const.QUOTES_AUTHOR + "," + Const.QUOTES_QUOTE + " FROM " + Const.QUOTE_TABLE + " WHERE " + Const.QUOTES_ID + "=?";
+
+        PreparedStatement selectStatement = getDbConnection().prepareStatement(select);
+        selectStatement.setInt(1, random.nextInt(numberOfQuotes) + 1);
+
+        resultSet = selectStatement.executeQuery();
+
+        if(resultSet.next()) quote = new Quote(resultSet.getInt(Const.QUOTES_ID), resultSet.getString(Const.QUOTES_QUOTE), resultSet.getString(Const.QUOTES_AUTHOR));
+        else quote = new Quote(0, "Error!", "Error!");
+        return quote;
+    }
 }

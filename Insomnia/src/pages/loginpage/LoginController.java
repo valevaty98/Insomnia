@@ -83,7 +83,6 @@ public class LoginController extends Page {
         user.setLogin(loginText);
         user.setPassword(passwordText);
 
-        DatabaseHandler dbHandler = new DatabaseHandler();
         try {
             ResultSet userSet = dbHandler.getUser(user);
             int counter = 0;

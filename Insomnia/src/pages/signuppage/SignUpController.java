@@ -74,8 +74,6 @@ public class SignUpController extends Page {
     }
 
     private void signUpNewUser() {
-        DatabaseHandler dbHandler = new DatabaseHandler();
-
         String nameText = nameField.getText();
         String surnameText = surnameField.getText();
         String emailText = emailField.getText();

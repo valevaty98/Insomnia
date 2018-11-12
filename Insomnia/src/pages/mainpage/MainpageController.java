@@ -1,10 +1,12 @@
 package pages.mainpage;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
+import objects.Quote;
 import pages.Page;
 
 public class MainpageController extends Page {
@@ -35,6 +37,9 @@ public class MainpageController extends Page {
 
     @FXML
     void initialize() {
+        quoteText.setText(getQuoteFromDB().getQuote());
+        quoteText.setText(getQuoteFromDB().getAuthor());
+
         aboutButton.setOnMouseClicked(event -> {
             openNewScene(aboutButton, "/pages/about/about.fxml");
         });
@@ -50,5 +55,18 @@ public class MainpageController extends Page {
         haveReadButton.setOnMouseClicked(event -> {
             openNewScene(haveReadButton, "/pages/haveread/haveread.fxml");
         });
+
+    }
+
+    public Quote getQuoteFromDB(){
+        try {
+            return dbHandler.getRandomQuote();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return  null;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

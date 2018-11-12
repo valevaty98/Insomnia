@@ -171,7 +171,6 @@ public class EditController extends Page {
 
     private Status updateBook(Book book) {
         Shake shake;
-        DatabaseHandler dbHandler = new DatabaseHandler();
 
         String status = statusRadio.getSelectedToggle().getUserData().toString();
         Status st;

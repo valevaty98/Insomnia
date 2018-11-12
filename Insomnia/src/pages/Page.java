@@ -19,6 +19,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public abstract class Page {
+    protected DatabaseHandler dbHandler;
+
+    public Page() {
+        dbHandler = new DatabaseHandler();
+    }
     protected void openNewScene(Node node, String window) {
         Stage stage = (Stage) node.getScene().getWindow();
 
@@ -75,7 +80,6 @@ public abstract class Page {
     protected ObservableList<Book> getBooksProperties(Status status) throws SQLException, ClassNotFoundException {
         ObservableList<Book> books = FXCollections.observableArrayList();
 
-        DatabaseHandler dbHandler = new DatabaseHandler();
         ResultSet bookSet = dbHandler.getBooks(status);
 
         while (bookSet.next()) {

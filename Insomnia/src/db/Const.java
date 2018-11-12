@@ -21,4 +21,8 @@ public class Const {
     public static final String BOOKS_NOTES = "notes";
     public static final String BOOKS_GENRE = "genre";
 
+    public static final String QUOTE_TABLE = "quotes";
+    public static final String QUOTES_ID = "id";
+    public static final String QUOTES_QUOTE = "quote";
+    public static final String QUOTES_AUTHOR = "author";
 }
