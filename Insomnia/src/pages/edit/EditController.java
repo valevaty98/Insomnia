@@ -188,7 +188,7 @@ public class EditController extends Page {
         noButton.setOnMouseClicked(event -> {
             deletePane.setVisible(false);
         });
-        
+
         infoPain.setOnMouseClicked(event -> {
             deletePane.setVisible(false);
         });
