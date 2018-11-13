@@ -45,7 +45,8 @@ public class DatabaseHandler
 
     public void signUpUser(User user) throws SQLException, ClassNotFoundException {
         ResultSet userSet = null;
-        String insert = "INSERT INTO " + Const.USER_TABLE + "(" + Const.USERS_NAME + "," + Const.USERS_SURNAME + "," + Const.USERS_EMAIL + "," + Const.USERS_LOGIN + "," + Const.USERS_PASSWORD + ") VALUES" + "(?,?,?,?,?)";
+        String insert = "INSERT INTO " + Const.USER_TABLE + "(" + Const.USERS_NAME + "," + Const.USERS_SURNAME +
+                "," + Const.USERS_EMAIL + "," + Const.USERS_LOGIN + "," + Const.USERS_PASSWORD + ") VALUES" + "(?,?,?,?,?)";
 
         PreparedStatement insertStatement = getConnection().prepareStatement(insert);
         insertStatement.setString(1, user.getName());
@@ -56,7 +57,8 @@ public class DatabaseHandler
 
         insertStatement.executeUpdate();
 
-        String select = "SELECT " + Const.USERS_ID + " FROM " + Const.USER_TABLE + " WHERE " + Const.USERS_LOGIN + "=? AND " + Const.USERS_PASSWORD + "=?";
+        String select = "SELECT " + Const.USERS_ID + " FROM " + Const.USER_TABLE + " WHERE " + Const.USERS_LOGIN +
+                "=? AND " + Const.USERS_PASSWORD + "=?";
 
         PreparedStatement selectStatement = getConnection().prepareStatement(select);
         selectStatement.setString(1, user.getLogin());
@@ -71,7 +73,8 @@ public class DatabaseHandler
     public ResultSet getUser(User user) throws SQLException, ClassNotFoundException {
         ResultSet userSet = null;
 
-        String select = "SELECT * FROM " + Const.USER_TABLE + " WHERE " + Const.USERS_LOGIN + "=? AND " + Const.USERS_PASSWORD + "=?";
+        String select = "SELECT * FROM " + Const.USER_TABLE + " WHERE " + Const.USERS_LOGIN + "=? AND " +
+                Const.USERS_PASSWORD + "=?";
 
         PreparedStatement selectStatement = getConnection().prepareStatement(select);
         selectStatement.setString(1, user.getLogin());
@@ -88,7 +91,9 @@ public class DatabaseHandler
 
     public void addBookToUser(Book book) throws SQLException, ClassNotFoundException {
         String id = this.user.getId();
-        String insert = "INSERT INTO " + Const.BOOK_TABLE + "(" + Const.BOOKS_USER_ID + "," + Const.BOOKS_STATUS + "," + Const.BOOKS_TITLE + "," + Const.BOOKS_AUTHOR + "," + Const.BOOKS_FROMDATE + "," + Const.BOOKS_TILLDATE + "," + Const.BOOKS_AUDIO + "," + Const.BOOKS_NOTES + "," + Const.BOOKS_GENRE + ") VALUES " + "(?,?,?,?,?,?,?,?,?)";
+        String insert = "INSERT INTO " + Const.BOOK_TABLE + "(" + Const.BOOKS_USER_ID + "," + Const.BOOKS_STATUS + "," +
+                Const.BOOKS_TITLE + "," + Const.BOOKS_AUTHOR + "," + Const.BOOKS_FROMDATE + "," + Const.BOOKS_TILLDATE +
+                "," + Const.BOOKS_AUDIO + "," + Const.BOOKS_NOTES + "," + Const.BOOKS_GENRE + ") VALUES " + "(?,?,?,?,?,?,?,?,?)";
 
         PreparedStatement insertStatement = getConnection().prepareStatement(insert);
         insertStatement.setInt(1, Integer.valueOf(id));
@@ -108,7 +113,9 @@ public class DatabaseHandler
 
     public void updateBookInDB(Book book) throws SQLException, ClassNotFoundException {
         int id_book = book.getId();
-        String update = "UPDATE " + Const.BOOK_TABLE + " SET " + Const.BOOKS_STATUS + "=?, " + Const.BOOKS_TITLE + "=?, " + Const.BOOKS_AUTHOR + "=?, " + Const.BOOKS_FROMDATE + "=?, " + Const.BOOKS_TILLDATE + "=?, " + Const.BOOKS_AUDIO + "=?, " + Const.BOOKS_NOTES + "=?," + Const.BOOKS_GENRE + "=? WHERE " + Const.BOOKS_ID + "=?";
+        String update = "UPDATE " + Const.BOOK_TABLE + " SET " + Const.BOOKS_STATUS + "=?, " + Const.BOOKS_TITLE + "=?, " +
+                Const.BOOKS_AUTHOR + "=?, " + Const.BOOKS_FROMDATE + "=?, " + Const.BOOKS_TILLDATE + "=?, " +
+                Const.BOOKS_AUDIO + "=?, " + Const.BOOKS_NOTES + "=?," + Const.BOOKS_GENRE + "=? WHERE " + Const.BOOKS_ID + "=?";
 
         PreparedStatement updateStatement = getConnection().prepareStatement(update);
         updateStatement.setString(1, book.getStatus().toString());
@@ -129,7 +136,10 @@ public class DatabaseHandler
     public ResultSet getBooks(Status status) throws SQLException, ClassNotFoundException {
         ResultSet bookSet = null;
 
-        String select = "SELECT " + Const.BOOKS_ID + "," + Const.BOOKS_STATUS + "," + Const.BOOKS_TITLE + "," + Const.BOOKS_AUTHOR + "," + Const.BOOKS_TILLDATE + "," + Const.BOOKS_FROMDATE + "," + Const.BOOKS_AUDIO + "," + Const.BOOKS_GENRE + "," + Const.BOOKS_NOTES + " FROM " + Const.BOOK_TABLE + " WHERE " + Const.BOOKS_USER_ID + "=? AND " + Const.BOOKS_STATUS + "=?";
+        String select = "SELECT " + Const.BOOKS_ID + "," + Const.BOOKS_STATUS + "," + Const.BOOKS_TITLE + "," +
+                Const.BOOKS_AUTHOR + "," + Const.BOOKS_TILLDATE + "," + Const.BOOKS_FROMDATE + "," + Const.BOOKS_AUDIO +
+                "," + Const.BOOKS_GENRE + "," + Const.BOOKS_NOTES + " FROM " + Const.BOOK_TABLE + " WHERE " +
+                Const.BOOKS_USER_ID + "=? AND " + Const.BOOKS_STATUS + "=?";
 
         PreparedStatement selectStatement = getConnection().prepareStatement(select);
         selectStatement.setInt(1, Integer.valueOf(user.getId()));
@@ -164,14 +174,16 @@ public class DatabaseHandler
 
         Random random = new Random();
 
-        String select = "SELECT " + Const.QUOTES_ID + "," + Const.QUOTES_AUTHOR + "," + Const.QUOTES_QUOTE + " FROM " + Const.QUOTE_TABLE + " WHERE " + Const.QUOTES_ID + "=?";
+        String select = "SELECT " + Const.QUOTES_ID + "," + Const.QUOTES_AUTHOR + "," + Const.QUOTES_QUOTE + " FROM " +
+                Const.QUOTE_TABLE + " WHERE " + Const.QUOTES_ID + "=?";
 
         PreparedStatement selectStatement = getConnection().prepareStatement(select);
         selectStatement.setInt(1, random.nextInt(numberOfQuotes) + 1);
 
         resultSet = selectStatement.executeQuery();
 
-        if(resultSet.next()) quote = new Quote(resultSet.getInt(Const.QUOTES_ID), resultSet.getString(Const.QUOTES_QUOTE), resultSet.getString(Const.QUOTES_AUTHOR));
+        if(resultSet.next()) quote = new Quote(resultSet.getInt(Const.QUOTES_ID), resultSet.getString(Const.QUOTES_QUOTE),
+                resultSet.getString(Const.QUOTES_AUTHOR));
         else quote = new Quote(0, "Error!", "Error!");
         return quote;
     }

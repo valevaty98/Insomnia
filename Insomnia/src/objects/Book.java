@@ -14,7 +14,8 @@ public class Book {
     private String genre;
     private String notes = "";
 
-    public Book(Status status, String title, String author, LocalDate fromDate, LocalDate tillDate, boolean isAudio, String genre, String notes) {
+    public Book(Status status, String title, String author, LocalDate fromDate, LocalDate tillDate, boolean isAudio,
+                String genre, String notes) {
         this.status = status;
         this.title = title;
         this.author = author;
@@ -25,7 +26,8 @@ public class Book {
         this.notes = notes;
     }
 
-    public Book(Status status, String title, String author, String fromDate, String tillDate, boolean isAudio, String genre, String notes) {
+    public Book(Status status, String title, String author, String fromDate, String tillDate, boolean isAudio,
+                String genre, String notes) {
         this.status = status;
         this.title = title;
         this.author = author;
@@ -36,7 +38,8 @@ public class Book {
         this.notes = notes;
     }
 
-    public Book(int id, Status status, String title, String author, String fromDate, String tillDate, boolean isAudio, String genre, String notes) {
+    public Book(int id, Status status, String title, String author, String fromDate, String tillDate, boolean isAudio,
+                String genre, String notes) {
         this.id = id;
         this.status = status;
         this.title = title;
