@@ -11,8 +11,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import objects.Book;
 import objects.Status;
-import pages.edit.EditController;
-import pages.info.InfoController;
+import pages.controllers.EditController;
+import pages.controllers.InfoController;
 
 import java.io.IOException;
 import java.sql.ResultSet;

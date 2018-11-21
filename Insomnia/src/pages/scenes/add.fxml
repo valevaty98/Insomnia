@@ -16,82 +16,58 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #2e3348;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pages.edit.EditController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #2e3348;" stylesheets="@../../styles/styles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pages.controllers.AddController">
     <children>
-        <AnchorPane fx:id="infoPane" layoutX="144.0" layoutY="74.0" prefHeight="429.0" prefWidth="557.0" style="-fx-background-color: white; -fx-border-radius: 5;" stylesheets="@../../styles/Styles.css">
+        <AnchorPane layoutX="144.0" layoutY="74.0" prefHeight="429.0" prefWidth="557.0" style="-fx-background-color: white; -fx-border-radius: 5;">
             <children>
-                <TextField fx:id="titleField" layoutX="25.0" layoutY="40.0" promptText="Title.." style="-fx-border-color: silver; -fx-border-radius: 5; -fx-background-color: white;">
-                    <font>
-                        <Font name="System Italic" size="13.0" />
-                    </font></TextField>
-                <TextField fx:id="authorField" layoutX="25.0" layoutY="84.0" promptText="Author.." style="-fx-border-color: silver; -fx-border-radius: 5; -fx-background-color: white;">
-                    <font>
-                        <Font name="System Italic" size="13.0" />
-                    </font></TextField>
-                <Line endX="22.0" endY="-41.0" layoutX="184.0" layoutY="165.0" startX="22.0" startY="-135.0" stroke="#2e3348" />
-                <Line endX="22.0" endY="-41.0" layoutX="309.0" layoutY="165.0" startX="22.0" startY="-135.0" stroke="#2e3348" />
-                <DatePicker fx:id="fromDatePicker" layoutX="355.0" layoutY="42.0" promptText="From date.." style="-fx-border-color: silver; -fx-border-radius: 5; -fx-background-color: white;" />
-                <DatePicker fx:id="tillDatePicker" layoutX="355.0" layoutY="86.0" promptText="Till date.." style="-fx-border-color: silver; -fx-border-radius: 5; -fx-background-color: white;" />
-                <CheckBox fx:id="isAudioCheck" layoutX="331.0" layoutY="171.0" mnemonicParsing="false" text="Audio book">
-                    <font>
-                        <Font name="System Bold Italic" size="13.0" />
-                    </font>
-                </CheckBox>
-                <ChoiceBox fx:id="genreComboBox" layoutX="56.0" layoutY="168.0" prefWidth="150.0" />
-                <TextArea fx:id="noteField" layoutX="56.0" layoutY="218.0" prefHeight="139.0" prefWidth="442.0" promptText="Any notes.." style="-fx-background-color: white; -fx-border-color: silver; -fx-border-radius: 5;">
-                    <font>
-                        <Font name="System Italic" size="14.0" />
-                    </font>
-                </TextArea>
-                <Button fx:id="updateButton" layoutX="107.0" layoutY="374.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="138.0" style="-fx-background-color: #F4A460;" text="Update" textFill="WHITE">
-                    <font>
-                        <Font name="Times New Roman Bold Italic" size="19.0" />
-                    </font>
-                </Button>
-            <Button fx:id="cancelButton" layoutX="312.0" layoutY="374.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="145.0" style="-fx-background-color: #F4A460;" text="Cancel" textFill="WHITE">
+            <TextField fx:id="titleField" layoutX="25.0" layoutY="40.0" promptText="Title.." style="-fx-border-color: silver; -fx-border-radius: 5; -fx-background-color: white;">
                <font>
-                  <Font name="Times New Roman Bold Italic" size="19.0" />
-               </font>
-            </Button>
-            <RadioButton fx:id="haveReadRadio" layoutX="225.0" layoutY="36.0" mnemonicParsing="false" selected="true" text="Have read" textFill="#2e3348" userData="Have read">
+                  <Font name="System Italic" size="13.0" />
+               </font></TextField>
+            <TextField fx:id="authorField" layoutX="25.0" layoutY="84.0" promptText="Author.." style="-fx-border-color: silver; -fx-border-radius: 5; -fx-background-color: white;">
+               <font>
+                  <Font name="System Italic" size="13.0" />
+               </font></TextField>
+            <RadioButton fx:id="haveReadRadio" layoutX="224.0" layoutY="33.0" mnemonicParsing="false" selected="true" text="Have read" textFill="#2e3348" userData="Have read">
                <font>
                   <Font name="System Bold Italic" size="13.0" />
                </font>
                <toggleGroup>
-                  <ToggleGroup fx:id="statusRadio" />
+                  <ToggleGroup fx:id="typeRadio" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="isReadingRadio" layoutX="225.0" layoutY="69.0" mnemonicParsing="false" text="Is reading" textFill="#2e3348" toggleGroup="$statusRadio" userData="Is Reading">
+            <RadioButton fx:id="isReadingRadio" layoutX="224.0" layoutY="66.0" mnemonicParsing="false" text="Is reading" textFill="#2e3348" toggleGroup="$typeRadio" userData="Is reading">
                <font>
                   <Font name="System Bold Italic" size="13.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="willReadRadio" layoutX="225.0" layoutY="99.0" mnemonicParsing="false" text="Will read" textFill="#2e3348" toggleGroup="$statusRadio" userData="Will read">
+            <RadioButton fx:id="willReadRadio" layoutX="224.0" layoutY="96.0" mnemonicParsing="false" text="Will read" textFill="#2e3348" toggleGroup="$typeRadio" userData="Will read">
                <font>
                   <Font name="System Bold Italic" size="13.0" />
                </font>
             </RadioButton>
+            <Line endX="22.0" endY="-41.0" layoutX="184.0" layoutY="165.0" startX="22.0" startY="-135.0" stroke="#2e3348" />
+            <Line endX="22.0" endY="-41.0" layoutX="309.0" layoutY="165.0" startX="22.0" startY="-135.0" stroke="#2e3348" />
+            <DatePicker fx:id="fromDatePicker" layoutX="355.0" layoutY="42.0" promptText="From date.." style="-fx-border-color: silver; -fx-border-radius: 5; -fx-background-color: white;" />
+            <DatePicker fx:id="tillDatePicker" layoutX="355.0" layoutY="86.0" promptText="Till date.." style="-fx-border-color: silver; -fx-border-radius: 5; -fx-background-color: white;" />
+            <CheckBox fx:id="isAudioCheck" layoutX="331.0" layoutY="171.0" mnemonicParsing="false" text="Audio book">
+               <font>
+                  <Font name="System Bold Italic" size="13.0" />
+               </font>
+            </CheckBox>
+            <ChoiceBox fx:id="genreComboBox" layoutX="56.0" layoutY="168.0" prefWidth="150.0" />
+            <TextArea fx:id="noteField" layoutX="56.0" layoutY="218.0" prefHeight="139.0" prefWidth="442.0" promptText="Any notes.." style="-fx-background-color: white; -fx-border-color: silver; -fx-border-radius: 5;">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </TextArea>
+            <Button fx:id="addBookButton" layoutX="194.0" layoutY="374.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="145.0" style="-fx-background-color: #F4A460;" stylesheets="@../../styles/styles.css" text="Add book" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman Bold Italic" size="19.0" />
+               </font>
+            </Button>
             </children>
         </AnchorPane>
-      <AnchorPane fx:id="deletePane" layoutX="250.0" layoutY="170.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="160.0" prefWidth="341.0" style="-fx-background-color: #2e3348; -fx-background-radius: 10;" visible="false">
-         <children>
-            <Button fx:id="sureButton" layoutX="57.0" layoutY="107.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="81.0" style="-fx-background-color: #F4A460;" text="Sure" textFill="WHITE">
-               <font>
-                  <Font name="Times New Roman Bold Italic" size="15.0" />
-               </font>
-            </Button>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="32.0" layoutY="29.0" prefHeight="60.0" prefWidth="274.0" text="Do you really want to delete&#10; this book?&#10;" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="Times New Roman Bold" size="20.0" />
-               </font>
-            </Label>
-            <Button fx:id="noButton" layoutX="193.0" layoutY="107.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="81.0" style="-fx-background-color: #F4A460;" text="No" textFill="WHITE">
-               <font>
-                  <Font name="Times New Roman Bold Italic" size="15.0" />
-               </font>
-            </Button>
-         </children>
-      </AnchorPane>
         <Label layoutX="316.0" layoutY="3.0" text="Insomnia" textFill="WHITE">
             <font>
                 <Font name="Times New Roman Bold Italic" size="54.0" />
@@ -178,17 +154,5 @@
         <Line endX="28.0" layoutX="108.0" layoutY="276.0" startX="-100.0" stroke="#2e3348" />
         <Line endX="28.0" layoutX="108.0" layoutY="124.0" startX="-100.0" stroke="#2e3348" />
         <Line endX="11.0" endY="184.0" layoutX="132.0" layoutY="144.0" startX="11.0" startY="-143.0" stroke="#2e3348" />
-      <Button fx:id="deleteButton" layoutX="636.0" layoutY="13.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="52.0" style="-fx-background-color: #F4A460;" textFill="WHITE">
-         <font>
-            <Font name="Times New Roman Bold Italic" size="19.0" />
-         </font>
-         <graphic>
-            <ImageView fitHeight="74.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../assets/icons/delete.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
     </children>
 </AnchorPane>
