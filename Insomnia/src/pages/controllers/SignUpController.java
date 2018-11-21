@@ -80,7 +80,7 @@ public class SignUpController extends Page {
         String passwordText = passwordField.getText();
         User user = new User(nameText, surnameText, emailText, loginText, passwordText);
 
-        if (!loginText.equals("") && !passwordText.equals("") && !nameText.equals("") && !emailText.equals("")) {
+        if (!loginText.equals("") && testPassword(passwordText) && !nameText.equals("") && !emailText.equals("")) {
             try {
                 dbHandler.signUpUser(user);
                 openNewScene(signUpButton, "/pages/scenes/mainpage.fxml");
@@ -95,5 +95,10 @@ public class SignUpController extends Page {
             new Shake(nameField).playShake();
             new Shake(emailField).playShake();
         }
+    }
+
+    private boolean testPassword(String testString) {
+        String passPattern = "^(?=.*[0-9])(?=.*[a-z])(?=\\S+$).{6,}$";
+        return testString.matches(passPattern);
     }
 }
