@@ -187,4 +187,17 @@ public class DatabaseHandler
         else quote = new Quote(0, "Error!", "Error!");
         return quote;
     }
+
+    public boolean doesLoginExist(String login) throws SQLException {
+        String select = "SELECT *  FROM " + Const.USER_TABLE + " WHERE " + Const.USERS_LOGIN + "=\"" + login + "\"";
+        PreparedStatement selectStatement = getConnection().prepareStatement(select);
+
+        ResultSet resultSet = selectStatement.executeQuery();
+
+        if(resultSet.next()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

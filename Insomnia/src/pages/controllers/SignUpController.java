@@ -80,7 +80,7 @@ public class SignUpController extends Page {
         String passwordText = passwordField.getText();
         User user = new User(nameText, surnameText, emailText, loginText, passwordText);
 
-        if (!loginText.equals("") && testPassword(passwordText) && !nameText.equals("") && !emailText.equals("")) {
+        if (testLogin(loginText) && testPassword(passwordText) && testName(nameText) && testEmail(emailText)) {
             try {
                 dbHandler.signUpUser(user);
                 openNewScene(signUpButton, "/pages/scenes/mainpage.fxml");
@@ -90,15 +90,42 @@ public class SignUpController extends Page {
                 e.printStackTrace();
             }
         } else {
-            new Shake(loginField).playShake();
-            new Shake(passwordField).playShake();
-            new Shake(nameField).playShake();
-            new Shake(emailField).playShake();
+            if (!testLogin(loginText)) new Shake(loginField).playShake();
+            if (!testPassword(passwordText)) new Shake(passwordField).playShake();
+            if (!testName(nameText)) new Shake(nameField).playShake();
+            if (!testEmail(emailText))new Shake(emailField).playShake();
         }
+
     }
 
     private boolean testPassword(String testString) {
         String passPattern = "^(?=.*[0-9])(?=.*[a-z])(?=\\S+$).{6,}$";
         return testString.matches(passPattern);
     }
+
+    private boolean testEmail(String testString) {
+            String emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-z]{2,6}$";
+        return testString.matches(emailPattern);
+    }
+
+    private boolean testLogin(String testString) {
+        String loginPattern = "^[a-zA-Z0-9._-]{3,}$";
+        try {
+            if (!dbHandler.doesLoginExist(testString)) {
+                return testString.matches(loginPattern);
+            }
+            else {
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    private boolean testName(String testString) {
+        String namePattern = "^[a-zA-Z]{2,}$";
+        return testString.matches(namePattern);
+    }
+
 }
