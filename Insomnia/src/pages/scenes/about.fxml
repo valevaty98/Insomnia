@@ -19,19 +19,14 @@
         </Label>
         <AnchorPane layoutX="144.0" layoutY="74.0" prefHeight="429.0" prefWidth="557.0" style="-fx-background-color: white; -fx-border-radius: 5;">
             <children>
-                <ImageView fx:id="booksImage" fitHeight="350.0" fitWidth="557.0" layoutX="-1.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../assets/icons/books.jpg" />
-                    </image>
-                </ImageView>
             <ImageView fitHeight="70.0" fitWidth="71.0" layoutX="43.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/icons/leafs.png" />
+                  <Image url="@../../assets/icons/leafs.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="70.0" fitWidth="63.0" layoutX="47.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/icons/message.png" />
+                  <Image url="@../../assets/icons/message.png" />
                </image>
             </ImageView>
             <Text layoutX="143.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Application version 1.01.">
@@ -66,7 +61,7 @@
          <graphic>
             <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/icons/isReading.png" />
+                  <Image url="@../../assets/icons/isReading.png" />
                </image>
             </ImageView>
          </graphic>
@@ -81,7 +76,7 @@
          <graphic>
             <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/icons/about.png" />
+                  <Image url="@../../assets/icons/about.png" />
                </image>
             </ImageView>
          </graphic>
@@ -111,7 +106,7 @@
          <graphic>
             <ImageView fitHeight="85.0" fitWidth="111.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/icons/idcard.png" />
+                  <Image url="@../../assets/icons/idcard.png" />
                </image>
             </ImageView>
          </graphic>
@@ -126,7 +121,7 @@
          <graphic>
             <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/icons/haveRead.png" />
+                  <Image url="@../../assets/icons/haveRead.png" />
                </image>
             </ImageView>
          </graphic>

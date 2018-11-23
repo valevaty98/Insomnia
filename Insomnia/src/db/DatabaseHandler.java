@@ -32,11 +32,31 @@ public class DatabaseHandler
 
     public void setConnection() throws ClassNotFoundException, SQLException {
 
-        String connectionString = "jdbc:mysql://" + Configs.dbHost + ":" + Configs.dbPort + "/" + Configs.dbName;
+        String connectionString = "jdbc:sqlite:insomnia.db";
 
-        Class.forName("com.mysql.jdbc.Driver");
+        dbConnection = DriverManager.getConnection(connectionString);
 
-        dbConnection = DriverManager.getConnection(connectionString, Configs.dbUser, Configs.dbPassword);
+        Statement stmt = dbConnection.createStatement();
+
+        //language=SQLITE-SQL
+        String createUsersTable = "CREATE TABLE IF NOT EXISTS 'users' (\n" + "  'id' INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+                "  'name' VARCHAR(45) NOT NULL,\n" + "  'surname' VARCHAR(45) NULL,\n" + "  'email' VARCHAR(60) NOT NULL,\n" +
+                "  'login' VARCHAR(45) NOT NULL,\n" + "  'password' VARCHAR(45) NOT NULL);";
+
+        String createBooksTable = "CREATE TABLE IF NOT EXISTS 'books' (\n" + "  'book_id' INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+                "  'user_id' INTEGER NOT NULL,\n" + "  'status' VARCHAR(30) NOT NULL,\n" + "  'title' VARCHAR(45) NOT NULL,\n" +
+                "  'author' VARCHAR(60) NOT NULL,\n" + "  'fromDate' VARCHAR(45) NOT NULL,\n" + "  'tillDate' VARCHAR(45) NOT NULL,\n" +
+                "  'isAudio' VARCHAR(45) NOT NULL,\n" + "  'notes' VARCHAR(2000) NOT NULL,\n" + "  'genre' VARCHAR(100) NULL,\n" +
+                "  CONSTRAINT 'user_id'\n" + "    FOREIGN KEY ('user_id')\n" + "    REFERENCES 'users' ('id')\n" +
+                "    ON DELETE NO ACTION\n" +
+                "    ON UPDATE NO ACTION);";
+
+        String createQuotesTable = "CREATE TABLE IF NOT EXISTS 'quotes' (\n" + "  'id' INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+                "  'quote' VARCHAR(1000) NOT NULL,\n" + "  'author' VARCHAR(60) NOT NULL);";
+
+        stmt.execute(createUsersTable);
+        stmt.execute(createBooksTable);
+        stmt.execute(createQuotesTable);
     }
 
     public Connection getConnection() {
@@ -172,6 +192,10 @@ public class DatabaseHandler
         if (resultSet.next()) numberOfQuotes = resultSet.getInt(1);
         else numberOfQuotes = 0;
 
+        if (numberOfQuotes == 0) {
+            quote = new Quote(0, "Error!", "Error!");
+            return quote;
+        }
         Random random = new Random();
 
         String select = "SELECT " + Const.QUOTES_ID + "," + Const.QUOTES_AUTHOR + "," + Const.QUOTES_QUOTE + " FROM " +
