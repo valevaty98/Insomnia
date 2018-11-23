@@ -38,7 +38,6 @@ public class DatabaseHandler
 
         Statement stmt = dbConnection.createStatement();
 
-        //language=SQLITE-SQL
         String createUsersTable = "CREATE TABLE IF NOT EXISTS 'users' (\n" + "  'id' INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
                 "  'name' VARCHAR(45) NOT NULL,\n" + "  'surname' VARCHAR(45) NULL,\n" + "  'email' VARCHAR(60) NOT NULL,\n" +
                 "  'login' VARCHAR(45) NOT NULL,\n" + "  'password' VARCHAR(45) NOT NULL);";
