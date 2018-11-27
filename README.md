@@ -10,3 +10,7 @@ Insomnia is a desktop app for those who like to read that keeps a list of your b
 **UML diagrams: (<a href ="https://github.com/valevaty98/Insomnia/blob/master/docs/diagrams/diagrams.md">Ru</a>).**
 
 **Application: (<a href ="https://github.com/valevaty98/Insomnia/tree/master/Insomnia/src">Code</a>).**
+
+**Test Plan: (<a href ="https://github.com/valevaty98/Insomnia/tree/master/testing/TestPlan.md">Ru</a>).**
+
+**Test Results: (<a href ="https://github.com/valevaty98/Insomnia/tree/master/testing/TestResults.md">Ru</a>).**
